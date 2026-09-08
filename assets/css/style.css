@@ -390,9 +390,6 @@ img {
 }
 
 .structure-card.featured {
-    grid-column: 1 / -1;
-    max-width: 420px;
-    margin: 0 auto 10px auto;
     border-color: #cbd5e1;
     background: #ffffff;
 }
