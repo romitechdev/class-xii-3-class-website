@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Website Resmi Kelas XII-3 (Infinithree) SMAN 3 Bojonegoro. Tampilan clean, modern dengan animasi interaktif.">
+        content="Website Resmi Kelas XII-3 (Infinithree) SMAN 3 Bojonegoro. Jadwal pelajaran, jadwal piket, struktur kelas, daftar siswa, galeri, dan prestasi.">
     <meta name="keywords"
-        content="Infinithree, XII-3, SMAN 3 Bojonegoro, SMA Bojonegoro, Kelas XII-3, website kelas">
+        content="Infinithree, XII-3, SMAN 3 Bojonegoro, SMA Bojonegoro, Kelas XII-3, website kelas, jadwal pelajaran, jadwal piket">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Infinithree — Website Resmi XII-3 SMAN 3 Bojonegoro">
     <meta property="og:description"
-        content="Website Resmi Kelas XII-3 SMAN 3 Bojonegoro. Temukan keseruan, struktur kelas, profil siswa, dan kenangan indah bersama kami.">
-    <meta property="og:image" content="./assets/images/icon1.png">
+        content="Website Resmi Kelas XII-3 SMAN 3 Bojonegoro. Temukan jadwal pelajaran, jadwal piket, struktur kelas, profil siswa, dan kenangan indah bersama kami.">
+    <meta property="og:image" content="./assets/images/hero.jpg">
     <meta name="author" content="Infinithree Dev">
     <title>Infinithree — Website Resmi XII-3 SMAN 3 Bojonegoro</title>
 
@@ -31,7 +31,7 @@
     <!-- NAVBAR -->
     <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand gsap-reveal" href="#hero">
+            <a class="navbar-brand" href="#hero">
                 <i class="ri-infinity-line text-primary me-2 fs-3"></i>
                 <span>INFINITHREE</span>
             </a>
@@ -43,24 +43,14 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#hero">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#class-structure">Struktur</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#class-members">Anggota</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#achievement">Prestasi</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#class-structure">Struktur</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#schedule">Jadwal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#picket">Piket</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#class-members">Anggota</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#achievement">Prestasi</a></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +63,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="hero-pill gsap-hero-element">
-                        <i class="ri-sparkles-fill"></i>
+                        <i class="ri-sparkles-fill me-1"></i>
                         <span>SMAN 3 BOJONEGORO • KELAS XII-3</span>
                     </div>
 
@@ -86,10 +76,10 @@
                     </p>
 
                     <div class="hero-buttons gsap-hero-element">
-                        <a href="#class-members" class="btn-modern btn-modern-primary gsap-btn">
+                        <a href="#class-members" class="btn-modern btn-modern-primary">
                             <i class="ri-group-line"></i> Lihat Anggota Kelas
                         </a>
-                        <a href="./confess.html" class="btn-modern btn-modern-outline gsap-btn">
+                        <a href="./confess.html" class="btn-modern btn-modern-outline">
                             <i class="ri-chat-heart-line"></i> Kirim Confess
                         </a>
                     </div>
@@ -97,23 +87,23 @@
             </div>
 
             <!-- STATS COUNTER -->
-            <div class="stats-container gsap-scroll-trigger">
+            <div class="stats-container">
                 <div class="row g-4 justify-content-center">
                     <div class="col-6 col-md-4">
                         <div class="stat-card">
-                            <div class="stat-number" data-target="36">0</div>
+                            <div class="stat-number" data-target="36">36</div>
                             <div class="stat-label">Total Siswa</div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4">
                         <div class="stat-card">
-                            <div class="stat-number" data-target="18">0</div>
+                            <div class="stat-number" data-target="18">18</div>
                             <div class="stat-label">Siswa Laki-Laki</div>
                         </div>
                     </div>
                     <div class="col-6 col-md-4">
                         <div class="stat-card">
-                            <div class="stat-number" data-target="18">0</div>
+                            <div class="stat-number" data-target="18">18</div>
                             <div class="stat-label">Siswa Perempuan</div>
                         </div>
                     </div>
@@ -126,7 +116,7 @@
     <!-- ABOUT SECTION -->
     <section id="about" class="section-padding">
         <div class="container">
-            <div class="section-title text-center gsap-scroll-trigger">
+            <div class="section-title text-center">
                 <span class="badge-pill"><i class="ri-information-line"></i> Tentang Kami</span>
                 <h2>Keluarga Besar <span class="gradient-text">XII-3</span></h2>
                 <div class="line"></div>
@@ -134,7 +124,7 @@
             </div>
 
             <!-- MEDIA SOSIAL CARDS -->
-            <div class="social-grid gsap-scroll-trigger">
+            <div class="social-grid">
                 <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-card">
                     <div class="social-card-head">
                         <div class="social-icon-wrapper instagram">
@@ -187,14 +177,14 @@
     <!-- STRUKTUR KELAS -->
     <section id="class-structure" class="section-padding">
         <div class="container">
-            <div class="section-title text-center gsap-scroll-trigger">
+            <div class="section-title text-center">
                 <span class="badge-pill"><i class="ri-organization-chart"></i> Organisasi</span>
                 <h2>Struktur <span class="gradient-text">Pengurus Kelas</span></h2>
                 <div class="line"></div>
                 <p>Jajaran pengurus yang solid dan bertanggung jawab dalam membangun sinergi kelas XII-3.</p>
             </div>
 
-            <div class="structure-grid gsap-scroll-trigger">
+            <div class="structure-grid">
                 <!-- Wali Kelas -->
                 <div class="structure-card featured">
                     <div class="avatar-wrapper">
@@ -262,10 +252,44 @@
     </section>
 
 
+    <!-- JADWAL PELAJARAN -->
+    <section id="schedule" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="badge-pill"><i class="ri-calendar-event-line"></i> Akademik</span>
+                <h2>Jadwal <span class="gradient-text">Pelajaran</span></h2>
+                <div class="line"></div>
+                <p>Jadwal pelajaran harian untuk mendukung pembelajaran yang teratur dan efektif.</p>
+            </div>
+
+            <div class="row g-4 text-center" id="schedule-container">
+                <!-- Dynamically loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- JADWAL PIKET -->
+    <section id="picket" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="badge-pill"><i class="ri-brush-2-line"></i> Kebersihan</span>
+                <h2>Jadwal <span class="gradient-text">Piket Kelas</span></h2>
+                <div class="line"></div>
+                <p>Pembagian petugas piket harian untuk menjaga kebersihan dan kenyamanan kelas.</p>
+            </div>
+
+            <div class="row g-4 text-center" id="picket-container">
+                <!-- Dynamically loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+
     <!-- ANGGOTA KELAS -->
     <section id="class-members" class="section-padding">
         <div class="container">
-            <div class="section-title text-center gsap-scroll-trigger">
+            <div class="section-title text-center">
                 <span class="badge-pill"><i class="ri-user-star-line"></i> Profil</span>
                 <h2>Anggota <span class="gradient-text">Kelas XII-3</span></h2>
                 <div class="line"></div>
@@ -273,7 +297,7 @@
             </div>
 
             <!-- SEARCH & FILTER BAR -->
-            <div class="search-filter-box gsap-scroll-trigger">
+            <div class="search-filter-box">
                 <div class="search-input-wrapper">
                     <i class="ri-search-line"></i>
                     <input type="text" id="member-search-input" class="search-input" placeholder="Cari nama siswa atau role...">
@@ -305,7 +329,7 @@
     <!-- GALERI SECTION -->
     <section id="gallery" class="section-padding">
         <div class="container">
-            <div class="section-title text-center gsap-scroll-trigger">
+            <div class="section-title text-center">
                 <span class="badge-pill"><i class="ri-gallery-line"></i> Kenangan</span>
                 <h2>Galeri <span class="gradient-text">Foto & Momen</span></h2>
                 <div class="line"></div>
@@ -322,8 +346,8 @@
                 </ul>
             </div>
 
-            <div class="text-center mt-4 gsap-scroll-trigger">
-                <a href="./vidio.html" class="btn-modern btn-modern-primary gsap-btn">
+            <div class="text-center mt-4">
+                <a href="./vidio.html" class="btn-modern btn-modern-primary">
                     <i class="ri-video-line"></i> Tonton Video Infinithree
                 </a>
             </div>
@@ -334,7 +358,7 @@
     <!-- PRESTASI SECTION -->
     <section id="achievement" class="section-padding">
         <div class="container">
-            <div class="section-title text-center gsap-scroll-trigger">
+            <div class="section-title text-center">
                 <span class="badge-pill"><i class="ri-trophy-line"></i> Kebanggaan</span>
                 <h2>Prestasi <span class="gradient-text">Kelas & Anggota</span></h2>
                 <div class="line"></div>
@@ -342,13 +366,13 @@
             </div>
 
             <!-- CLASS ACHIEVEMENTS -->
-            <h4 class="fw-bold mb-4 gsap-scroll-trigger"><i class="ri-award-line text-warning me-2"></i> Prestasi Kelas</h4>
+            <h4 class="fw-bold mb-4"><i class="ri-award-line text-warning me-2"></i> Prestasi Kelas</h4>
             <div class="row g-4 mb-5" id="achievement-container">
                 <!-- Dynamically loaded via JavaScript -->
             </div>
 
             <!-- MEMBER ACHIEVEMENTS -->
-            <h4 class="fw-bold mb-4 gsap-scroll-trigger"><i class="ri-medal-line text-warning me-2"></i> Prestasi Individu Siswa</h4>
+            <h4 class="fw-bold mb-4"><i class="ri-medal-line text-warning me-2"></i> Prestasi Individu Siswa</h4>
             <div class="row g-4" id="prestasiContainer">
                 <!-- Dynamically loaded via JavaScript -->
             </div>
@@ -387,6 +411,8 @@
                         <li><a href="#hero">Home</a></li>
                         <li><a href="#about">Tentang Kami</a></li>
                         <li><a href="#class-structure">Struktur Kelas</a></li>
+                        <li><a href="#schedule">Jadwal Pelajaran</a></li>
+                        <li><a href="#picket">Jadwal Piket</a></li>
                         <li><a href="#class-members">Anggota Kelas</a></li>
                         <li><a href="#gallery">Galeri Momen</a></li>
                         <li><a href="#achievement">Prestasi</a></li>

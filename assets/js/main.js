@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Register GSAP Plugins
+  // Register GSAP Plugins safely
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
   }
@@ -10,142 +10,177 @@ document.addEventListener("DOMContentLoaded", function () {
     yearElem.textContent = new Date().getFullYear();
   }
 
-  // GSAP HERO ANIMATIONS
+  // HERO ANIMATION
   initGSAPHero();
 
-  // GSAP SCROLLTRIGGER ANIMATIONS FOR SECTIONS
-  initGSAPScrollTriggers();
-
-  // HERO STATS COUNTER WITH GSAP
+  // HERO STATS COUNTER
   initGSAPStatsCounter();
 
-  // ANGGOTA KELAS (MEMBERS) SEARCH, FILTER & PAGINATION WITH GSAP
+  // JADWAL PELAJARAN (SCHEDULE)
+  initSchedule();
+
+  // JADWAL PIKET (PICKET)
+  initPicket();
+
+  // ANGGOTA KELAS (MEMBERS) SEARCH, FILTER & PAGINATION
   initClassMembers();
 
-  // GALERI WITH GSAP & FANCYBOX
+  // GALERI WITH FANCYBOX
   initGallery();
 
-  // PRESTASI (ACHIEVEMENTS) WITH GSAP
+  // PRESTASI (ACHIEVEMENTS)
   initAchievements();
 
-  // BACK TO TOP BUTTON & NAVBAR SCROLL STATE
+  // BACK TO TOP BUTTON & SCROLL EFFECTS
   initScrollEffects();
 });
 
 /* -------------------------------------------------------------
- * 1. GSAP HERO ENTRANCE ANIMATION
+ * 1. HERO ENTRANCE ANIMATION
  * ------------------------------------------------------------- */
 function initGSAPHero() {
   if (typeof gsap === "undefined") return;
 
-  const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-
-  tl.from(".navbar", {
-    y: -80,
+  gsap.from(".navbar", {
+    y: -60,
     opacity: 0,
-    duration: 1,
-  })
-    .from(
-      ".gsap-hero-element",
-      {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-      },
-      "-=0.5"
-    )
-    .from(
-      ".gsap-hero-title",
-      {
-        y: 50,
-        opacity: 0,
-        scale: 0.95,
-        duration: 1.2,
-      },
-      "-=0.8"
-    );
-}
-
-/* -------------------------------------------------------------
- * 2. GSAP SCROLLTRIGGER SECTION ANIMATIONS
- * ------------------------------------------------------------- */
-function initGSAPScrollTriggers() {
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-
-  // Animate Section Titles
-  gsap.utils.toArray(".section-title").forEach((title) => {
-    gsap.from(title, {
-      scrollTrigger: {
-        trigger: title,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
+    duration: 0.8,
+    ease: "power2.out",
   });
 
-  // Animate Social Grid Cards
-  gsap.from(".social-card", {
-    scrollTrigger: {
-      trigger: ".social-grid",
-      start: "top 80%",
-    },
-    y: 50,
+  gsap.from(".gsap-hero-element", {
+    y: 30,
     opacity: 0,
     duration: 0.8,
     stagger: 0.15,
-    ease: "power3.out",
-  });
-
-  // Animate Class Structure Grid
-  gsap.from(".structure-card", {
-    scrollTrigger: {
-      trigger: ".structure-grid",
-      start: "top 80%",
-    },
-    y: 50,
-    opacity: 0,
-    scale: 0.95,
-    duration: 0.9,
-    stagger: 0.12,
-    ease: "back.out(1.4)",
+    ease: "power2.out",
+    delay: 0.2,
   });
 }
 
 /* -------------------------------------------------------------
- * 3. GSAP STATS COUNTER
+ * 2. HERO STATS COUNTER
  * ------------------------------------------------------------- */
 function initGSAPStatsCounter() {
   const statNumbers = document.querySelectorAll(".stat-number");
-  if (!statNumbers.length || typeof gsap === "undefined") return;
+  if (!statNumbers.length) return;
 
-  ScrollTrigger.create({
-    trigger: ".stats-container",
-    start: "top 80%",
-    onEnter: () => {
-      statNumbers.forEach((counter) => {
-        const target = parseInt(counter.getAttribute("data-target"), 10);
-        const obj = { val: 0 };
-
-        gsap.to(obj, {
-          val: target,
-          duration: 2,
-          ease: "power2.out",
-          onUpdate: function () {
-            counter.innerText = Math.floor(obj.val);
-          },
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.create({
+      trigger: ".stats-container",
+      start: "top 85%",
+      onEnter: () => {
+        statNumbers.forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-target"), 10);
+          const obj = { val: 0 };
+          gsap.to(obj, {
+            val: target,
+            duration: 1.8,
+            ease: "power2.out",
+            onUpdate: function () {
+              counter.innerText = Math.floor(obj.val);
+            },
+          });
         });
-      });
-    },
-  });
+      },
+    });
+  }
 }
 
 /* -------------------------------------------------------------
- * 4. ANGGOTA KELAS (MEMBERS, SEARCH, FILTER, PAGINATION)
+ * 3. JADWAL PELAJARAN (SCHEDULE)
+ * ------------------------------------------------------------- */
+function initSchedule() {
+  const scheduleContainer = document.getElementById("schedule-container");
+  if (!scheduleContainer) return;
+
+  fetch("./assets/json/schedule.json")
+    .then((res) => res.json())
+    .then((data) => {
+      scheduleContainer.innerHTML = "";
+      data.forEach((dayItem) => {
+        const html = `
+          <div class="col-md-6 col-lg-4 schedule-card-col">
+            <div class="stat-card text-start h-100 p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="social-icon-wrapper" style="background: var(--brand-gradient); width: 44px; height: 44px; font-size: 1.2rem;">
+                  <i class="ri-calendar-2-line"></i>
+                </div>
+                <h5 class="mb-0 fw-bold">${dayItem.day}</h5>
+              </div>
+              <ul class="list-unstyled mb-0">
+                ${dayItem.lessons.map((lesson) => `<li class="py-1 border-bottom"><i class="ri-checkbox-circle-line me-2 text-primary"></i> ${lesson}</li>`).join("")}
+              </ul>
+            </div>
+          </div>`;
+        scheduleContainer.insertAdjacentHTML("beforeend", html);
+      });
+
+      if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.from(".schedule-card-col", {
+          scrollTrigger: {
+            trigger: "#schedule-container",
+            start: "top 85%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+        });
+      }
+    })
+    .catch((err) => console.error("Gagal memuat jadwal pelajaran:", err));
+}
+
+/* -------------------------------------------------------------
+ * 4. JADWAL PIKET (PICKET)
+ * ------------------------------------------------------------- */
+function initPicket() {
+  const picketContainer = document.getElementById("picket-container");
+  if (!picketContainer) return;
+
+  fetch("./assets/json/picket.json")
+    .then((res) => res.json())
+    .then((data) => {
+      picketContainer.innerHTML = "";
+      data.forEach((dayItem) => {
+        const html = `
+          <div class="col-md-6 col-lg-4 picket-card-col">
+            <div class="stat-card text-start h-100 p-4">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="social-icon-wrapper" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 44px; height: 44px; font-size: 1.2rem;">
+                  <i class="ri-brush-2-line"></i>
+                </div>
+                <h5 class="mb-0 fw-bold">${dayItem.day}</h5>
+              </div>
+              <ul class="list-unstyled mb-0">
+                ${dayItem.members.map((member) => `<li class="py-1 border-bottom"><i class="ri-user-line me-2 text-success"></i> ${member}</li>`).join("")}
+              </ul>
+            </div>
+          </div>`;
+        picketContainer.insertAdjacentHTML("beforeend", html);
+      });
+
+      if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.from(".picket-card-col", {
+          scrollTrigger: {
+            trigger: "#picket-container",
+            start: "top 85%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+        });
+      }
+    })
+    .catch((err) => console.error("Gagal memuat jadwal piket:", err));
+}
+
+/* -------------------------------------------------------------
+ * 5. ANGGOTA KELAS (MEMBERS, SEARCH, FILTER, PAGINATION)
  * ------------------------------------------------------------- */
 function initClassMembers() {
   const membersContainer = document.getElementById("class-members-container");
@@ -158,7 +193,7 @@ function initClassMembers() {
   let allMembers = [];
   let filteredMembers = [];
   let currentPage = 1;
-  const pageSize = 6;
+  const pageSize = 9; // Display 9 members per page for better visibility
   let activeFilter = "all";
   let searchQuery = "";
 
@@ -170,7 +205,6 @@ function initClassMembers() {
     })
     .catch((err) => console.error("Gagal memuat data anggota:", err));
 
-  // Search Input Listener
   if (searchInput) {
     searchInput.addEventListener("input", function (e) {
       searchQuery = e.target.value.toLowerCase().trim();
@@ -179,7 +213,6 @@ function initClassMembers() {
     });
   }
 
-  // Filter Pills Listener
   if (filterPillsContainer) {
     filterPillsContainer.addEventListener("click", function (e) {
       const btn = e.target.closest(".filter-btn");
@@ -263,13 +296,12 @@ function initClassMembers() {
       membersContainer.insertAdjacentHTML("beforeend", cardHTML);
     });
 
-    // GSAP Stagger Entrance for Members
     if (typeof gsap !== "undefined") {
       gsap.from(".member-item-col", {
-        y: 30,
+        y: 25,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.08,
+        duration: 0.5,
+        stagger: 0.06,
         ease: "power2.out",
       });
     }
@@ -330,7 +362,7 @@ function initClassMembers() {
 }
 
 /* -------------------------------------------------------------
- * 5. GALERI (WITH FANCYBOX LIGHTBOX & GSAP ANIMATIONS)
+ * 6. GALERI (WITH FANCYBOX LIGHTBOX & GSAP ANIMATIONS)
  * ------------------------------------------------------------- */
 function initGallery() {
   const galleryRow = document.getElementById("dynamic-gallery-row");
@@ -380,10 +412,10 @@ function initGallery() {
 
     if (typeof gsap !== "undefined") {
       gsap.from(".gallery-col-item", {
-        y: 40,
+        y: 30,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        duration: 0.5,
+        stagger: 0.08,
         ease: "power2.out",
       });
     }
@@ -444,7 +476,7 @@ function initGallery() {
 }
 
 /* -------------------------------------------------------------
- * 6. PRESTASI (ACHIEVEMENTS)
+ * 7. PRESTASI (ACHIEVEMENTS)
  * ------------------------------------------------------------- */
 function initAchievements() {
   const classAchieveContainer = document.getElementById("achievement-container");
@@ -476,12 +508,12 @@ function initAchievements() {
           gsap.from(".achievement-item-col", {
             scrollTrigger: {
               trigger: "#achievement-container",
-              start: "top 80%",
+              start: "top 85%",
             },
-            y: 40,
+            y: 30,
             opacity: 0,
-            duration: 0.7,
-            stagger: 0.12,
+            duration: 0.6,
+            stagger: 0.1,
             ease: "power2.out",
           });
         }
@@ -521,12 +553,12 @@ function initAchievements() {
           gsap.from(".member-achieve-col", {
             scrollTrigger: {
               trigger: "#prestasiContainer",
-              start: "top 80%",
+              start: "top 85%",
             },
-            y: 40,
+            y: 30,
             opacity: 0,
-            duration: 0.7,
-            stagger: 0.12,
+            duration: 0.6,
+            stagger: 0.1,
             ease: "power2.out",
           });
         }
@@ -536,7 +568,7 @@ function initAchievements() {
 }
 
 /* -------------------------------------------------------------
- * 7. SCROLL EFFECTS & BACK TO TOP
+ * 8. SCROLL EFFECTS & BACK TO TOP
  * ------------------------------------------------------------- */
 function initScrollEffects() {
   const backToTopBtn = document.getElementById("backToTop");
