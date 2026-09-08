@@ -103,13 +103,13 @@ function initSchedule() {
           <div class="col-md-6 col-lg-4 schedule-card-col">
             <div class="stat-card text-start h-100 p-4">
               <div class="d-flex align-items-center gap-3 mb-3">
-                <div class="social-icon-wrapper" style="background: var(--brand-gradient); width: 44px; height: 44px; font-size: 1.2rem;">
+                <div class="social-icon-wrapper" style="width: 44px; height: 44px; font-size: 1.2rem;">
                   <i class="ri-calendar-2-line"></i>
                 </div>
                 <h5 class="mb-0 fw-bold">${dayItem.day}</h5>
               </div>
               <ul class="list-unstyled mb-0">
-                ${dayItem.lessons.map((lesson) => `<li class="py-1 border-bottom"><i class="ri-checkbox-circle-line me-2 text-primary"></i> ${lesson}</li>`).join("")}
+                ${dayItem.lessons.map((lesson) => `<li class="py-1 border-bottom"><i class="ri-checkbox-circle-line me-2 text-dark"></i> ${lesson}</li>`).join("")}
               </ul>
             </div>
           </div>`;
@@ -149,13 +149,13 @@ function initPicket() {
           <div class="col-md-6 col-lg-4 picket-card-col">
             <div class="stat-card text-start h-100 p-4">
               <div class="d-flex align-items-center gap-3 mb-3">
-                <div class="social-icon-wrapper" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 44px; height: 44px; font-size: 1.2rem;">
+                <div class="social-icon-wrapper" style="width: 44px; height: 44px; font-size: 1.2rem;">
                   <i class="ri-brush-2-line"></i>
                 </div>
                 <h5 class="mb-0 fw-bold">${dayItem.day}</h5>
               </div>
               <ul class="list-unstyled mb-0">
-                ${dayItem.members.map((member) => `<li class="py-1 border-bottom"><i class="ri-user-line me-2 text-success"></i> ${member}</li>`).join("")}
+                ${dayItem.members.map((member) => `<li class="py-1 border-bottom"><i class="ri-user-line me-2 text-dark"></i> ${member}</li>`).join("")}
               </ul>
             </div>
           </div>`;
@@ -536,10 +536,10 @@ function initAchievements() {
                 </div>
                 <div class="achievement-body">
                   <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="${item.thumb}" alt="${item.title}" class="rounded-circle" style="width: 44px; height: 44px; object-fit: cover; border: 2px solid var(--brand-primary);">
+                    <img src="${item.thumb}" alt="${item.title}" class="rounded-circle" style="width: 44px; height: 44px; object-fit: cover; border: 2px solid var(--text-primary);">
                     <div>
-                      <h6 class="mb-0 fw-bold text-primary">${item.title}</h6>
-                      <small class="badge bg-warning text-dark">${item.status}</small>
+                      <h6 class="mb-0 fw-bold text-dark">${item.title}</h6>
+                      <small class="role-tag mt-1">${item.status}</small>
                     </div>
                   </div>
                   <p class="achievement-desc mb-0">${item.description}</p>
