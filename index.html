@@ -1,75 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html lang="id" data-theme="dark">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Website ini berisi informasi tentang kelas XI-3 SMAN 3 Bojonegoro, termasuk jadwal pelajaran, Jadwal piket, struktur kelas, daftar siswa, galeri, dan prestasi.">
+        content="Website Resmi Kelas XII-3 (Infinithree) SMAN 3 Bojonegoro. Informasi struktur kelas, daftar siswa, galeri kegiatan, dan prestasi kelas.">
     <meta name="keywords"
-        content="kelas XI-3, SMAN 3 Bojonegoro, SMA, Bojonegoro, Jawa Timur, pendidikan, infinithree, ">
+        content="Infinithree, XII-3, SMAN 3 Bojonegoro, SMA Bojonegoro, Kelas XII-3, website kelas">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Website Kelas XI-3 SMAN 3 Bojonegoro">
+    <meta property="og:title" content="Infinithree - Class Website XII-3 SMAN 3 Bojonegoro">
     <meta property="og:description"
-        content="Website ini berisi informasi tentang kelas XI-3 SMAN 3 Bojonegoro, termasuk jadwal pelajaran, Jadwal piket, struktur kelas, daftar siswa, galeri, dan prestasi.">
-    <meta property="og:image" content="https://www.sman3bojonegoro.sch.id/images/logo.png">
-    <meta property="og:url" content="https://www.sman3bojonegoro.sch.id/kelas/xi-3">
-    <meta name="twitter:title" content="Website Kelas XI-3 SMAN 3 Bojonegoro">
-    <meta name="twitter:description"
-        content="Website ini berisi informasi termasuk jadwal pelajaran, Jadwal piket, struktur kelas, daftar siswa, galeri, dan prestasi.">
-    <meta name="twitter:image" content="https://www.sman3bojonegoro.sch.id/images/logo.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="author" content="SMAN 3 Bojonegoro">
-    <meta name="copyright" content="2024">
-    <meta name="language" content="id">
-    <meta name="google-site-verification" content="CC6bjZ45EFPO-vkaeJE8sfjrf5umq-IyAiSuhYUyfpc" />
-    <title> Infinithree </title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.x.x/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+        content="Website Resmi Kelas XII-3 SMAN 3 Bojonegoro. Temukan keseruan, struktur kelas, profil siswa, dan kenangan indah bersama kami.">
+    <meta property="og:image" content="./assets/images/icon1.png">
+    <meta name="author" content="Infinithree Dev">
+    <title>Infinithree — Website Resmi XII-3 SMAN 3 Bojonegoro</title>
+
+    <!-- CSS External Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.com/libraries/font-awesome">
+    
+    <!-- Custom Style -->
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="shortcut icon" href="./assets/images/icon.png" type="image/x-icon">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="shortcut icon" href="./assets/images/icon1.png" type="image/x-icon">
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar">
+<body data-bs-spy="scroll" data-bs-target="#mainNavbar">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top">
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="./assets/images/icon1.png" alt="" height="100" width="100">
+            <a class="navbar-brand" href="#hero">
+                <img src="./assets/images/icon1.png" alt="Infinithree Logo">
+                <span>INFINITHREE</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+
+            <div class="d-flex align-items-center gap-2 order-lg-3">
+                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                    <i class="ri-moon-line" id="themeIcon"></i>
+                </button>
+                <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="ri-menu-3-line fs-2 text-primary"></i>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#hero">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Tentang XII-3</a>
+                        <a class="nav-link" href="#about">Tentang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#class-structure">Struktur Kelas</a>
+                        <a class="nav-link" href="#class-structure">Struktur</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#class-members">Anggota Kelas</a>
-                    </li>
-<!--                     <li class="nav-item">
-                        <a class="nav-link" href="#schedule">Jadwal Pelajaran</a>
+                        <a class="nav-link" href="#class-members">Anggota</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#picket">Jadwal Piket</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
+                        <a class="nav-link" href="#gallery">Galeri</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#achievement">Prestasi</a>
@@ -80,201 +73,54 @@
     </nav>
 
 
-    <!-- HERO -->
-    <section id="hero" class="min-vh-100 d-flex align-items-center text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 data-aos="fade-left" class="text-uppercase text-white fw-semibold display-1">Welcome to XII-3
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-pill" data-aos="fade-down" data-aos-duration="800">
+                        <i class="ri-sparkles-fill"></i>
+                        <span>SMAN 3 BOJONEGORO • KELAS XII-3</span>
+                    </div>
+
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Selamat Datang di <span class="gradient-text">Infinithree</span>
                     </h1>
 
-                    <h5 class="text-white mt-3 mb-4" data-aos="fade-right">Penuh petualangan dan prestasi!<br>Saksikan
-                        impian menjadi kenyataan disini.</h5>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        Penuh petualangan, kebersamaan, dan prestasi tiada henti. Saksikan setiap impian dan kenangan berharga menjadi kenyataan di sini. 🚀✨
+                    </p>
 
-
-    <!-- ABOUT -->
-    <section id="about" class="section-padding border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="50">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Tentang XII-3</h1>
-                        <div class="line"></div>
-                        <p>Selamat datang di XII-3 - Tempat di Mana Impian Menjadi Kenyataan! Di sini, setiap hari adalah
-                            petualangan baru dalam belajar, berkembang, dan menciptakan kenangan tak terlupakan.🚀✨</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="total-students section-padding">
-            <div class="container text-center">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
-                        <h1 class="text-white display-4">36</h1>
-                        <h6 class="text-uppercase mb-0 text-white mt-3">Students</h6>
-                    </div>
-                    <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
-                        <h1 class="text-white display-4">18</h1>
-                        <h6 class="text-uppercase mb-0 text-white mt-3">Boys</h6>
-                    </div>
-                    <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="350">
-                        <h1 class="text-white display-4">18</h1>
-                        <h6 class="text-uppercase mb-0 text-white mt-3">Girls</h6>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div id="medsos">
-            <div class="container section-padding-medsos border-top">
-                <div class="row">
-                    <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="50">
-                        <div class="section-title">
-                            <h1 class="display-4 fw-semibold">Media Sosial</h1>
-                            <div class="line"></div>
-                            <p>Explorasi visual di Instagram, pengungkapan diri lewat rahasia di Confess, dan ledakan
-                                kreativitas di TikTok. Satu dunia, tiga pengalaman unik.</p>
-                        </div>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#class-members" class="btn-modern btn-modern-primary">
+                            <i class="ri-group-line"></i> Lihat Anggota Kelas
+                        </a>
+                        <a href="./confess.html" class="btn-modern btn-modern-outline">
+                            <i class="ri-chat-heart-line"></i> Kirim Confess
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="container-medsos">
-                <div class="row medsos" data-aos="fade-down">
-                    <div class="col-6 p-4 medsos-col">
-                        <div class="card-kiri p-4 gy-1"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/instagram.jpeg);">
-                            <!-- Isi card col-6 pertama -->
-                            <div class="icon-ig"
-                                style="display: flex; justify-content: space-between;  width: inherit;">
-                                <i class="bi bi-instagram" style="font-size: 2.5rem; color: white; ;"></i>
-                                <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==">
-                                    <i class="bi bi-chevron-compact-right"
-                                        style="font-size: 2.5rem; color: white; right: -50px"></i>
-                                </a>
-                            </div>
-                            <div class="p-ig" style="display: flex; justify-content: center;">
-                                <p style="font-size: 1.3rem; font-weight: 500; color: white;">
-                                    Class Instagram
-                                </p>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="col-6 p-4 medsos-col">
-                        <div class="card-kanan-atas p-4 gy-1"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/confess.jpeg); max-width: 100%;">
-                            <!-- Isi card pertama di dalam col-6 kedua -->
-                            <div class="icon-confess"
-                                style="display: flex; justify-content: space-between; width: inherit;">
-                                <i class="bi bi-chat-heart" style="font-size: 1.7rem; color: white;"></i>
-                                <a href="./confess.html">
-                                    <i class="bi bi-chevron-compact-right" style="font-size: 1.7rem; color: white;"></i>
-                                </a>
-                            </div>
-                            <p
-                                style="font-size: 1.2rem; font-weight: 500; color: white; position: relative; margin-bottom: 50px;">
-                                Confess
-                            </p>
-                        </div>
-
-
-                        <div class="card-kanan-bawah p-4"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/tiktok.jpeg);">
-                            <!-- Isi card kedua di dalam col-6 kedua -->
-                            <div class="icon-tiktok"
-                                style="display: flex; justify-content: space-between; width: inherit;">
-                                <i class="bi bi-tiktok" style="font-size: 1.7rem; color: white;"></i>
-                                <a href="https://tiktok.com/@infinithree_ofc"><i class="bi bi-chevron-compact-right"
-                                        style="font-size: 1.5rem; color: white;"></i></a>
-                            </div>
-                            <p
-                                style="font-size: 1.2rem; font-weight: 500; color: white; display: flex; justify-content: center;">
-                                TikTok</p>
+            <!-- STATS COUNTER -->
+            <div class="stats-container" data-aos="fade-up" data-aos-delay="400">
+                <div class="row g-4 justify-content-center">
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="36">0</div>
+                            <div class="stat-label">Total Siswa</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="medsos-desktop">
-            <div class="container section-padding-medsos border-top">
-                <div class="row">
-                    <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="50">
-                        <div class="section-title">
-                            <h1 class="display-4 fw-semibold">Media Sosial</h1>
-                            <div class="line"></div>
-                            <p>Explorasi visual di Instagram, pengungkapan diri lewat rahasia di Confess, dan ledakan
-                                kreativitas di TikTok. Satu dunia, tiga pengalaman unik.</p>
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="18">0</div>
+                            <div class="stat-label">Siswa Laki-Laki</div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="container-medsos">
-                <div class="row medsos" data-aos="fade-down">
-                    <div class="col-4 p-4 medsos-col">
-                        <div class="card-kiri p-4 gy-1"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/instagram.jpeg);">
-                            <!-- Isi card col-6 pertama -->
-                            <div class="icon-ig"
-                                style="display: flex; justify-content: space-between;  width: inherit;">
-                                <i class="bi bi-instagram" style="font-size: 2.5rem; color: white;"></i>
-                                <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==">
-                                    <i class="bi bi-chevron-compact-right"
-                                        style="font-size: 2.5rem; color: white; right: -50px"></i>
-                                </a>
-                            </div>
-                            <div class="p-ig" style="display: flex; justify-content: center;">
-                                <p style="font-size: 1.3rem; font-weight: 500; color: white;">
-                                    Class Instagram
-                                </p>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="col-4 p-4 medsos-col">
-                        <div class="card-kanan-atas p-4 gy-1"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/confess.jpeg); max-width: 100%;">
-                            <!-- Isi card pertama di dalam col-6 kedua -->
-                            <div class="icon-confess"
-                                style="display: flex; justify-content: space-between;  width: inherit;">
-                                <i class="bi bi-chat-heart" style="font-size: 2.5rem; color: white;"></i>
-                                <a href="./confess.html">
-                                    <i class="bi bi-chevron-compact-right" style="font-size: 2.5rem; color: white;"></i>
-                                </a>
-                            </div>
-                            <div class="p-confess" style="display: flex; justify-content: center;">
-                                <p style="font-size: 1.3rem; font-weight: 500; color: white;">
-                                    Confess
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-4 p-4 medsos-col">
-                        <div class="card-kanan-bawah p-4"
-                            style="background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url(./assets/images/medsos/tiktok.jpeg);">
-                            <!-- Isi card kedua di dalam col-6 kedua -->
-                            <div class="icon-tiktok"
-                                style="display: flex; justify-content: space-between;  width: inherit;">
-                                <i class="bi bi-tiktok" style="font-size: 2.5rem; color: white;"></i>
-                                <a href="https://tiktok.com/@infinithree_ofc"><i class="bi bi-chevron-compact-right"
-                                        style="font-size: 2.5rem; color: white;"></i></a>
-                            </div>
-                            <div class="p-tt" style="display: flex; justify-content: center;">
-                                <p style="font-size: 1.3rem; font-weight: 500; color: white;">
-                                    TikTok</p>
-                            </div>
+                    <div class="col-6 col-md-4">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="18">0</div>
+                            <div class="stat-label">Siswa Perempuan</div>
                         </div>
                     </div>
                 </div>
@@ -283,343 +129,308 @@
     </section>
 
 
-    <!-- class structure -->
-    <section id="class-structure" class="section-padding border-top">
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Struktur Kelas</h1>
-                        <div class="line"></div>
-                        <p>Dapatkan wawasan tentang struktur kelas kami yang solid dan terorganisir dengan baik di sini.
-                            Kami menyajikan informasi tentang pembagian peran dan kerangka kerja yang mendukung
-                            lingkungan belajar yang efektif dan inklusif.</p>
-                    </div>
-                </div>
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="badge-pill"><i class="ri-information-line"></i> Tentang Kami</span>
+                <h2>Keluarga Besar <span class="gradient-text">XII-3</span></h2>
+                <div class="line"></div>
+                <p>Tempat di mana mimpi, karya, dan canda tawa menyatu. Di sini setiap momen diukir indah sebagai bagian dari perjalanan SMA yang membanggakan.</p>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/wali-kelas-12.jpg"
-                                class="rounded-square mx-auto d-block" alt="Wali Kelas">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Wali Kelas</h5>
-                                <p class="card-text">Wicaksono Suhendi S.Pd</p>
-                            </div>
+
+            <!-- MEDIA SOSIAL CARDS -->
+            <div class="social-grid" data-aos="fade-up" data-aos-delay="100">
+                <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-card">
+                    <div class="social-card-head">
+                        <div class="social-icon-wrapper instagram">
+                            <i class="ri-instagram-line"></i>
+                        </div>
+                        <div class="social-arrow">
+                            <i class="ri-arrow-right-up-line"></i>
                         </div>
                     </div>
+                    <div>
+                        <div class="social-card-title">Class Instagram</div>
+                        <div class="social-card-desc">@infinithree_ofc • Dokumentasi momen & kegiatan</div>
+                    </div>
+                </a>
 
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/ketua-12.jpg" class="rounded-circle mx-auto d-block"
-                                alt="Ketua Kelas">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Ketua Kelas</h5>
-                                <p class="card-text">Danda Satrio Utomo</p>
-                            </div>
+                <a href="./confess.html" class="social-card">
+                    <div class="social-card-head">
+                        <div class="social-icon-wrapper confess">
+                            <i class="ri-heart-pulse-line"></i>
+                        </div>
+                        <div class="social-arrow">
+                            <i class="ri-arrow-right-up-line"></i>
                         </div>
                     </div>
+                    <div>
+                        <div class="social-card-title">Confess Wall</div>
+                        <div class="social-card-desc">Ungkapkan cerita rahasia atau salam hangatmu</div>
+                    </div>
+                </a>
 
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/wakil-12.jpg" class="rounded-circle mx-auto d-block"
-                                alt="Wakil Ketua Kelas">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Wakil Ketua Kelas</h5>
-                                <p class="card-text">M Rafi Bintan Alamsyah</p>
-                            </div>
+                <a href="https://tiktok.com/@infinithree_ofc" target="_blank" rel="noopener" class="social-card">
+                    <div class="social-card-head">
+                        <div class="social-icon-wrapper tiktok">
+                            <i class="ri-tiktok-line"></i>
+                        </div>
+                        <div class="social-arrow">
+                            <i class="ri-arrow-right-up-line"></i>
                         </div>
                     </div>
-
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/sekretaris-1-12.jpg"
-                                class="rounded-circle mx-auto d-block" alt="Sekretaris 1">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Sekretaris 1</h5>
-                                <p class="card-text">Shinta athaya G</p>
-                            </div>
-                        </div>
+                    <div>
+                        <div class="social-card-title">Class TikTok</div>
+                        <div class="social-card-desc">@infinithree_ofc • Konten seru & kreativitas</div>
                     </div>
-
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/members/arum.jpg"
-                                class="rounded-circle mx-auto d-block" alt="Sekretaris 2">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Sekretaris 2</h5>
-                                <p class="card-text">Dewi Candra Sekar Arum</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/bendhahara-1-12.jpg"
-                                class="rounded-circle mx-auto d-block" alt="Bendahara 1">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Bendahara 1</h5>
-                                <p class="card-text">Meysya Nur Azizah A</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/bendhahara-2-12.jpg"
-                                class="rounded-circle mx-auto d-block" alt="Bendahara 2">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Bendahara 2</h5>
-                                <p class="card-text">Januarista Wefi F</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="col-12 mb-3">
-                        <div class="card">
-                            <img src="./assets/images/structur-class/keamanan.jpg"
-                                class="rounded-circle mx-auto d-block" alt="Keamanan">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Keamanan</h5>
-                                <p class="card-text">Dicky Saputra</p>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-
-            </div>
-    </section>
-
-    <!-- Anggota Kelas -->
-    <section id="class-members" class="section-padding border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Anggota Kelas</h1>
-                        <div class="line"></div>
-                        <p>Temukan daftar lengkap anggota kelas kami di sini. Dari siswa-siswa paling antusias hingga
-                            pemimpin kelas yang tangguh, kami memiliki ragam individu yang membuat kelas kami menjadi
-                            tempat yang dinamis dan bersemangat.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row gy-5 gx-4" id="class-members-container">
-                <!-- Member items will be dynamically added here using JavaScript -->
-            </div>
-            <!--pagination-->
-            <div class="pagination-wrapper">
-                <nav aria-label="...">
-                    <ul class="pagination justify-content-center">
-                    </ul>
-                </nav>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Jadwal Pelajaran -->
-<!--     <section id="schedule" class="section-padding border-top">
+
+    <!-- STRUKTUR KELAS -->
+    <section id="class-structure" class="section-padding">
         <div class="container">
-            <div class="row g-4 text-center">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Jadwal Pelajaran</h1>
-                        <div class="line"></div>
-                        <p>Jadwal pelajaran yang teratur dan jelas adalah kunci kesuksesan belajar. Di sini, Anda akan
-                            menemukan jadwal pelajaran kelas kami yang disusun dengan cermat, membantu siswa dan guru
-                            untuk mengatur waktu dan fokus dengan efisien.
-                        </p>
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="badge-pill"><i class="ri-organization-chart"></i> Organisasi</span>
+                <h2>Struktur <span class="gradient-text">Pengurus Kelas</span></h2>
+                <div class="line"></div>
+                <p>Jajaran pengurus yang solid dan bertanggung jawab dalam membangun sinergi kelas XII-3.</p>
+            </div>
+
+            <div class="structure-grid">
+                <!-- Wali Kelas -->
+                <div class="structure-card featured" data-aos="fade-up">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/wali-kelas-12.jpg" alt="Wali Kelas" class="avatar-img">
                     </div>
+                    <span class="role-tag">Wali Kelas</span>
+                    <h4 class="member-name">Wicaksono Suhendi S.Pd</h4>
                 </div>
 
-                <!-- Jadwal Pelajaran akan ditambahkan di sini menggunakan JavaScript -->
-<!--             </div>
-        </div>
-    </section> -->
-    <!-- piket -->
-<!--     <section id="picket" class="section-padding border-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Jadwal Piket</h1>
-                        <div class="line"></div>
-                        <p>Kebersihan dan keteraturan kelas adalah prioritas kami. Dapatkan informasi tentang jadwal
-                            piket kami di sini, di mana siswa bergiliran untuk memastikan kelas tetap bersih, teratur,
-                            dan nyaman untuk belajar.</p>
+                <!-- Ketua -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/ketua-12.jpg" alt="Ketua Kelas" class="avatar-img">
                     </div>
+                    <span class="role-tag">Ketua Kelas</span>
+                    <h4 class="member-name">Danda Satrio Utomo</h4>
+                </div>
+
+                <!-- Wakil -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/wakil-12.jpg" alt="Wakil Ketua Kelas" class="avatar-img">
+                    </div>
+                    <span class="role-tag">Wakil Ketua</span>
+                    <h4 class="member-name">M Rafi Bintan Alamsyah</h4>
+                </div>
+
+                <!-- Sekretaris 1 -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/sekretaris-1-12.jpg" alt="Sekretaris 1" class="avatar-img">
+                    </div>
+                    <span class="role-tag">Sekretaris 1</span>
+                    <h4 class="member-name">Shinta Athaya G</h4>
+                </div>
+
+                <!-- Sekretaris 2 -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/members/arum.jpg" alt="Sekretaris 2" class="avatar-img">
+                    </div>
+                    <span class="role-tag">Sekretaris 2</span>
+                    <h4 class="member-name">Dewi Candra Sekar Arum</h4>
+                </div>
+
+                <!-- Bendahara 1 -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/bendhahara-1-12.jpg" alt="Bendahara 1" class="avatar-img">
+                    </div>
+                    <span class="role-tag">Bendahara 1</span>
+                    <h4 class="member-name">Meysya Nur Azizah A</h4>
+                </div>
+
+                <!-- Bendahara 2 -->
+                <div class="structure-card" data-aos="fade-up" data-aos-delay="350">
+                    <div class="avatar-wrapper">
+                        <img src="./assets/images/structur-class/bendhahara-2-12.jpg" alt="Bendahara 2" class="avatar-img">
+                    </div>
+                    <span class="role-tag">Bendahara 2</span>
+                    <h4 class="member-name">Januarista Wefi F</h4>
                 </div>
             </div>
- -->
-            <!-- Jadwal Piket akan ditambahkan di sini menggunakan JavaScript -->
-<!--             <div class="row g-4 text-center" id="picket-container"> -->
-                <!-- Data Jadwal Piket akan ditampilkan di sini -->
-<!--             </div>
         </div>
-    </section> -->
-    
+    </section>
 
 
+    <!-- ANGGOTA KELAS -->
+    <section id="class-members" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="badge-pill"><i class="ri-user-star-line"></i> Profil</span>
+                <h2>Anggota <span class="gradient-text">Kelas XII-3</span></h2>
+                <div class="line"></div>
+                <p>Setiap individu membawa warna, passion, dan keunikan yang membangun karakter kelas kami.</p>
+            </div>
 
-
-    <!-- Gallery -->
-<section id="gallery" class="section-padding border-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                <div class="section-title">
-                    <h1 class="display-4 fw-semibold">Gallery</h1>
-                    <div class="line"></div>
-                    <p>Saksikan momen-momen spesial dan prestasi luar biasa dari kami melalui galeri kami. Foto-foto
-                        inspiratif akan memberikan gambaran yang jelas tentang kehidupan di kelas kami.</p>
+            <!-- SEARCH & FILTER BAR -->
+            <div class="search-filter-box" data-aos="fade-up" data-aos-delay="100">
+                <div class="search-input-wrapper">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="member-search-input" class="search-input" placeholder="Cari nama siswa atau role...">
+                </div>
+                <div class="filter-pills" id="filter-pills-container">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="gamer">Gamer</button>
+                    <button class="filter-btn" data-filter="illustrator">Illustrator</button>
+                    <button class="filter-btn" data-filter="athlete">Athlete</button>
+                    <button class="filter-btn" data-filter="singer">Singer</button>
+                    <button class="filter-btn" data-filter="leader">Leader</button>
                 </div>
             </div>
-        </div>
-        <div class="row" id="dynamic-gallery-row">
-        </div>
-        <!-- Pagination untuk Galeri -->
-        <div class="pagination-gallery-wrapper justify-content-center">
-            <div aria-label="...">
-                <ul id="pagination-gallery" class="pagination-gallery pagination justify-content-center">
-                    <!-- Tombol "Previous" dan "Next" akan ditambahkan secara dinamis oleh JavaScript -->
+
+            <!-- MEMBERS CONTAINER -->
+            <div class="row g-4" id="class-members-container">
+                <!-- Dynamically loaded via JavaScript -->
+            </div>
+
+            <!-- PAGINATION -->
+            <div class="pagination-wrapper text-center">
+                <ul class="pagination-custom justify-content-center" id="members-pagination">
                 </ul>
             </div>
         </div>
+    </section>
 
-        <div class="d-grid gap-2 d-flex justify-content-center">
-            <a href="./vidio.html">
-            <button class="btn btn-primary" type="button" style="margin-top: 1rem;">
-                
-                <i class="bi bi-caret-right-square"></i> vidio
-            </button></a>
-        </div>
 
-    </div>
-</section>
-
-    <!-- Prestasi -->
-    <section id="achievement" class="section-padding border-top">
+    <!-- GALERI SECTION -->
+    <section id="gallery" class="section-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Prestasi</h1>
-                        <div class="line"></div>
-                        <p>Kami bangga dengan prestasi kami! Di sini, Anda akan menemukan informasi tentang prestasi
-                            akademik, olahraga, seni, dan lainnya yang telah diraih oleh kami, memberikan pengakuan atas
-                            kerja keras dan dedikasi kami.
-                        </p>
-                    </div>
-                </div>
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="badge-pill"><i class="ri-gallery-line"></i> Kenangan</span>
+                <h2>Galeri <span class="gradient-text">Foto & Momen</span></h2>
+                <div class="line"></div>
+                <p>Kumpulan potret berharga yang mengabadikan setiap canda tawa dan kegiatan seru kami.</p>
             </div>
-            <div class="row" id="achievement-container">
-                <!-- Prestasi akan ditampilkan di sini -->
+
+            <div class="row" id="dynamic-gallery-row">
+                <!-- Dynamically loaded via JavaScript -->
+            </div>
+
+            <!-- GALERI PAGINATION -->
+            <div class="pagination-wrapper text-center">
+                <ul class="pagination-custom justify-content-center" id="pagination-gallery">
+                </ul>
+            </div>
+
+            <div class="text-center mt-4" data-aos="fade-up">
+                <a href="./vidio.html" class="btn-modern btn-modern-primary">
+                    <i class="ri-video-line"></i> Tonton Video Infinithree
+                </a>
             </div>
         </div>
-        <div class="section-padding border-top" id="prestasi-siswa">
-            <div class="container cards ">
-                <div class="row">
+    </section>
 
-                    <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                        <div class="section-title">
-                            <h1 class="fw-semibold">Prestasi Member XI-3</h1>
-                            <div class="line"></div>
-                            <p>Kami bangga dengan prestasi kami! Di sini, Anda akan menemukan informasi tentang prestasi
-                                akademik, olahraga, seni, dan lainnya yang telah diraih oleh kami, memberikan pengakuan
-                                atas
-                                kerja keras dan dedikasi kami.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" id="prestasiContainer">
-                    <!-- Elemen card-prestasi akan ditambahkan di sini -->
-                  </div>
+
+    <!-- PRESTASI SECTION -->
+    <section id="achievement" class="section-padding">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <span class="badge-pill"><i class="ri-trophy-line"></i> Kebanggaan</span>
+                <h2>Prestasi <span class="gradient-text">Kelas & Anggota</span></h2>
+                <div class="line"></div>
+                <p>Deretan raihan dan penghargaan yang berhasil kami capai melalui kerja keras dan dedikasi.</p>
+            </div>
+
+            <!-- CLASS ACHIEVEMENTS -->
+            <h4 class="fw-bold mb-4" data-aos="fade-up"><i class="ri-award-line text-warning me-2"></i> Prestasi Kelas</h4>
+            <div class="row g-4 mb-5" id="achievement-container">
+                <!-- Dynamically loaded via JavaScript -->
+            </div>
+
+            <!-- MEMBER ACHIEVEMENTS -->
+            <h4 class="fw-bold mb-4" data-aos="fade-up"><i class="ri-medal-line text-warning me-2"></i> Prestasi Individu Siswa</h4>
+            <div class="row g-4" id="prestasiContainer">
+                <!-- Dynamically loaded via JavaScript -->
             </div>
         </div>
     </section>
 
 
     <!-- FOOTER -->
-    <footer class="bg-dark">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row gy-5">
-                    <div class="col-lg-3 col-sm-6">
-                        <a href="#"><img src="./assets/images/icon-footer.png" alt=""></a>
-                        <div class="line"></div>
-                        <p>Dalam lembaran hidup kita, SMA adalah bab yang takkan pernah kita lupakan. Inilah momen-momen
-                            yang akan terus kita kenang! 📖🎉 #PetualanganKelasXII-3</p>
+    <footer>
+        <div class="container">
+            <div class="row gy-4 gx-5 justify-content-between">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-logo">
+                        <img src="./assets/images/icon-footer.png" alt="Infinithree Icon">
+                        <span>INFINITHREE</span>
+                    </div>
+                    <p class="text-muted mb-4">
+                        Dalam lembaran SMA, kelas XII-3 diukir dengan persahabatan, prestasi, dan kenangan abadi. 📖🎉 #PetualanganInfinithree
+                    </p>
+                    <div class="social-pill-group">
+                        <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-pill" aria-label="Instagram">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="https://tiktok.com/@infinithree_ofc" target="_blank" rel="noopener" class="social-pill" aria-label="TikTok">
+                            <i class="ri-tiktok-line"></i>
+                        </a>
+                        <a href="./confess.html" class="social-pill" aria-label="Confess">
+                            <i class="ri-chat-heart-line"></i>
+                        </a>
+                    </div>
+                </div>
 
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <h5 class="mb-0 text-white">Media Social</h5>
-                        <div class="line"></div>
-                        <div class="social-icons">
-                            <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ=="><i
-                                    class="ri-instagram-fill"></i></a>
-                            <a href="https://tiktok.com/@infinithree_ofc"><svg xmlns="http://www.w3.org/2000/svg"
-                                    widht="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M16 8.24537V15.5C16 19.0899 13.0899 22 9.5 22C5.91015 22 3 19.0899 3 15.5C3 11.9101 5.91015 9 9.5 9C10.0163 9 10.5185 9.06019 11 9.17393V12.3368C10.5454 12.1208 10.0368 12 9.5 12C7.567 12 6 13.567 6 15.5C6 17.433 7.567 19 9.5 19C11.433 19 13 17.433 13 15.5V2H16C16 4.76142 18.2386 7 21 7V10C19.1081 10 17.3696 9.34328 16 8.24537Z">
-                                    </path>
-                                </svg></a>
-                            <a href="https://ngl.link/infinithree_ofc/confessions"><i class="ri-wechat-line"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <h5 class="mb-0 text-white">LINK</h5>
-                        <div class="line"></div>
-                        <ul>
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#class-structure">Class Structure</a></li>
-                            <li><a href="#class-members">Class Member</a></li>
-                            <li><a href="#gallery">Gallery</a></li>
-                            <li><a href="#achievement">Achievement</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <h5 class="mb-0 text-white">CONTACT</h5>
-                        <div class="line"></div>
-                        <ul>
-                            <li>Bojonegoro, Sukorejo</li>
-                            <li>Jl. Monginsidi No 9</li>
-                            <li>Infinithree@gmail.com</li>
-                        </ul>
-                    </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Navigasi</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#class-structure">Struktur Kelas</a></li>
+                        <li><a href="#class-members">Anggota Kelas</a></li>
+                        <li><a href="#gallery">Galeri Momen</a></li>
+                        <li><a href="#achievement">Prestasi</a></li>
+                    </ul>
+                </div>
 
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Lokasi & Sekolah</h5>
+                    <ul class="footer-links">
+                        <li><i class="ri-map-pin-line me-2 text-primary"></i> SMAN 3 Bojonegoro</li>
+                        <li><i class="ri-building-line me-2 text-primary"></i> Jl. Monginsidi No. 9, Sukorejo</li>
+                        <li><i class="ri-mail-line me-2 text-primary"></i> infinithree@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
 
+            <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    © <span id="currentYear"></span> <strong>Infinithree XII-3</strong>. All rights reserved.
+                </div>
+                <div>
+                    Crafted with <i class="ri-heart-fill text-danger"></i> by <a href="https://instagram.com/romynn10" target="_blank" rel="noopener" class="fw-bold">Romi</a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row g-4 justify-content-between">
-                    <div class="col-auto">
-                        <p class="mb-0">© Copyright Infinithree. <span id="currentYear"></span></p>
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var currentYearElem = document.getElementById('currentYear');
-                                var currentYear = new Date().getFullYear();
-                                currentYearElem.textContent = currentYear;
-                            });
-                        </script>
-
-                    </div>
-                    <div class="col-auto">
-                        Website By <a href="https://instagram.com/romynn10"> Romi</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </footer>
 
+    <!-- BACK TO TOP BUTTON -->
+    <div class="back-to-top" id="backToTop" title="Kembali ke atas">
+        <i class="ri-arrow-up-line"></i>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <!-- JS EXTERNAL LIBRARIES -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- CUSTOM JS -->
     <script src="./assets/js/main.js"></script>
 </body>
 

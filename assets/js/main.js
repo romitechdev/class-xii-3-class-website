@@ -1,395 +1,490 @@
-AOS.init({
-  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-  offset: 120, // offset (in px) from the original trigger point
-  delay: 0, // values from 0 to 3000, with step 50ms
-  duration: 900, // values from 0 to 3000, with step 50ms
-  easing: "ease", // default easing for AOS animations
-  once: false, // whether animation should happen only once - while scrolling down
-  mirror: false, // whether elements should animate out while scrolling past them
-  anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+// Initialize AOS (Animate On Scroll)
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof AOS !== "undefined") {
+    AOS.init({
+      duration: 800,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 50,
+    });
+  }
+
+  // Set Current Year in Footer
+  const yearElem = document.getElementById("currentYear");
+  if (yearElem) {
+    yearElem.textContent = new Date().getFullYear();
+  }
+
+  // DARK / LIGHT THEME TOGGLE
+  initThemeToggle();
+
+  // HERO STATS COUNTER ANIMATION
+  initStatsCounter();
+
+  // ANGGOTA KELAS (MEMBERS) SEARCH & FILTER & PAGINATION
+  initClassMembers();
+
+  // GALERI
+  initGallery();
+
+  // PRESTASI (ACHIEVEMENTS)
+  initAchievements();
+
+  // BACK TO TOP BUTTON & NAVBAR SCROLL STATE
+  initScrollEffects();
 });
 
-// ANGGOTA KELAS
+/* -------------------------------------------------------------
+ * 1. THEME TOGGLE (DARK / LIGHT MODE)
+ * ------------------------------------------------------------- */
+function initThemeToggle() {
+  const themeBtn = document.getElementById("themeToggleBtn");
+  const themeIcon = document.getElementById("themeIcon");
+  const htmlElem = document.documentElement;
 
-document.addEventListener("DOMContentLoaded", function () {
-  var classMembersContainer = document.getElementById(
-    "class-members-container"
-  );
-  var pageSize = 6;
-  var currentPage = 1;
+  const savedTheme = localStorage.getItem("infinithree_theme") || "dark";
+  setTheme(savedTheme);
 
-  // Fetch member data from JSON file
-  fetch("./assets/json/members.json")
-    .then((response) => response.json())
-    .then((members) => {
-      function generateMemberHTML(member) {
-        return `
-              <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
-                  <div class="class-members">
-                      <div class="class-members-head p-4 bg-white theme-shadow">
-                          <p>${member.description}</p>
-                      </div>
-                      <div class="class-members-person mt-4 d-flex align-items-center">
-                          <img class="rounded-circle" src="${member.image}" alt="">
-                          <div class="ms-3">
-                              <h5>${member.name}</h5>
-                              <small>${member.role}</small>
-                          </div>
-                      </div>
-                  </div>
-              </div>`;
-      }
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      const currentTheme = htmlElem.getAttribute("data-theme");
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(nextTheme);
+    });
+  }
 
-      function hideAllItems() {
-        classMembersContainer.innerHTML = ""; // Clear existing content
-      }
+  function setTheme(theme) {
+    htmlElem.setAttribute("data-theme", theme);
+    localStorage.setItem("infinithree_theme", theme);
+    if (themeIcon) {
+      themeIcon.className = theme === "dark" ? "ri-sun-line" : "ri-moon-line";
+    }
+  }
+}
 
-      function showPage(pageNumber) {
-        hideAllItems();
-        var startIndex = (pageNumber - 1) * pageSize;
-        var endIndex = startIndex + pageSize;
+/* -------------------------------------------------------------
+ * 2. HERO STATS ANIMATED COUNTER
+ * ------------------------------------------------------------- */
+function initStatsCounter() {
+  const statNumbers = document.querySelectorAll(".stat-number");
+  if (!statNumbers.length) return;
 
-        for (var i = startIndex; i < endIndex && i < members.length; i++) {
-          var memberHTML = generateMemberHTML(members[i]);
-          classMembersContainer.innerHTML += memberHTML;
-        }
-      }
+  let animated = false;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          statNumbers.forEach((counter) => {
+            const target = parseInt(counter.getAttribute("data-target"), 10);
+            let count = 0;
+            const speed = Math.ceil(target / 40);
 
-      function updatePagination() {
-        var pageCount = Math.ceil(members.length / pageSize);
-        var paginationContainer = document.querySelector(".pagination");
-
-        paginationContainer.innerHTML = ""; // Clear pagination before creating a new one
-
-        // Add "Previous" button
-        var previousItem = document.createElement("li");
-        previousItem.className = "page-item";
-        var previousLink = document.createElement("a");
-        previousLink.className = "page-link";
-        previousLink.href = "#";
-        previousLink.textContent = "Previous";
-        previousLink.addEventListener("click", function (event) {
-          event.preventDefault();
-          if (currentPage > 1) {
-            currentPage--;
-            showPage(currentPage);
-            updatePagination();
-          }
-        });
-        previousItem.appendChild(previousLink);
-        paginationContainer.appendChild(previousItem);
-
-        // Add page numbers
-        for (var i = 1; i <= pageCount; i++) {
-          var listItem = document.createElement("li");
-          listItem.className = "page-item";
-          var link = document.createElement("a");
-          link.className = "page-link";
-          link.href = "#";
-          link.textContent = i;
-
-          link.addEventListener("click", function (event) {
-            event.preventDefault();
-            var pageNumber = parseInt(event.target.textContent);
-            currentPage = pageNumber;
-            showPage(currentPage);
-            updatePagination();
+            const updateCount = () => {
+              count += speed;
+              if (count >= target) {
+                counter.innerText = target;
+              } else {
+                counter.innerText = count;
+                setTimeout(updateCount, 30);
+              }
+            };
+            updateCount();
           });
-
-          if (i === currentPage) {
-            listItem.classList.add("active");
-          }
-
-          listItem.appendChild(link);
-          paginationContainer.appendChild(listItem);
         }
-
-        // Add "Next" button
-        var nextItem = document.createElement("li");
-        nextItem.className = "page-item";
-        var nextLink = document.createElement("a");
-        nextLink.className = "page-link";
-        nextLink.href = "#";
-        nextLink.textContent = "Next";
-        nextLink.addEventListener("click", function (event) {
-          event.preventDefault();
-          if (currentPage < pageCount) {
-            currentPage++;
-            showPage(currentPage);
-            updatePagination();
-          }
-        });
-        nextItem.appendChild(nextLink);
-        paginationContainer.appendChild(nextItem);
-
-        // Enable or disable "Previous" and "Next" buttons based on the current page
-        if (currentPage === 1) {
-          previousItem.classList.add("disabled");
-        } else {
-          previousItem.classList.remove("disabled");
-        }
-
-        if (currentPage === pageCount) {
-          nextItem.classList.add("disabled");
-        } else {
-          nextItem.classList.remove("disabled");
-        }
-      }
-
-      showPage(currentPage);
-      updatePagination();
-    })
-    .catch((error) => console.error("Error fetching members data:", error));
-});
-
-// JADWAL PELAJARAN
-document.addEventListener("DOMContentLoaded", function () {
-  var scheduleContainer = document.querySelector("#schedule .row");
-
-  // Fetch schedule data from JSON file
-  fetch("./assets/json/schedule.json")
-    .then((response) => response.json())
-    .then((schedule) => {
-      schedule.forEach((day) => {
-        var scheduleHTML = generateScheduleHTML(day);
-        scheduleContainer.innerHTML += scheduleHTML;
       });
-    })
-    .catch((error) => console.error("Error fetching schedule data:", error));
+    },
+    { threshold: 0.5 }
+  );
 
-  function generateScheduleHTML(day) {
-    return `
-            <div class="col-lg-4 col-md-6" data-aos="fade-down" data-aos-delay="150">
-                <div class="schedule theme-shadow p-lg-5 p-4 d-flex align-items-center">
-                    <div class="iconbox me-4">
-                        <i class="ri-calendar-2-line"></i>
-                    </div>
-                    <div class="schedule-text">
-                        <h5 class="mt-4 mb-3">${day.day}</h5>
-                        <p>${day.lessons.join("<br>")}</p>
-                    </div>
-                </div>
-            </div>`;
-  }
-});
-
-// JADWAL PIKET
-document.addEventListener("DOMContentLoaded", function () {
-  var picketContainer = document.querySelector("#picket-container");
-
-  // Fetch picket data from JSON file
-  fetch("./assets/json/picket.json")
-    .then((response) => response.json())
-    .then((picket) => {
-      picket.forEach((day) => {
-        var picketHTML = generatePicketHTML(day);
-        picketContainer.innerHTML += picketHTML;
-      });
-    })
-    .catch((error) => console.error("Error fetching picket data:", error));
-
-  function generatePicketHTML(day) {
-    return `
-          <div class="col-lg-4 col-sm-6 schedule" data-aos="fade-down" data-aos-delay="150">
-              <div class="schedule theme-shadow p-lg-5 p-4">
-                  <div class="iconbox">
-                      <i class="ri-brush-2-line"></i>
-                  </div>
-                  <h5 class="mt-4 mb-3">${day.day}</h5>
-                  <p>${day.members.join("<br>")}</p>
-              </div>
-          </div>`;
-  }
-});
-
-// GALERI
-
-var currentPage = 1; // Halaman awal
-var itemsPerPage = 6; // Jumlah item per halaman
-var galleryItems = []; // Array untuk menyimpan semua elemen galeri
-var totalPages;
-
-function loadGalleryItems() {
-    var galleryRow = document.getElementById('dynamic-gallery-row');
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            // Parse the JSON response
-            var galleryData = JSON.parse(this.responseText);
-
-            // Generate HTML for gallery items
-            var galleryHTML = galleryData.map(function (item, index) {
-                var delay = 150 + index * 100;
-                return `
-                    <div class="col-md-4" data-aos="fade-down" data-aos-delay="${delay}">
-                        <div class="gallery-item image-zoom">
-                            <div class="image-zoom-wrapper">
-                                <img src="${item.src}" alt="${item.alt}">
-                            </div>
-                            <a href="${item.src}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                        </div>
-                    </div>`;
-            }).join('');
-
-            // Insert the generated HTML into the galleryRow
-            galleryRow.innerHTML = galleryHTML;
-
-            // Update galleryItems array
-            galleryItems = document.querySelectorAll('.gallery-item');
-
-            // Calculate total pages and show initial page
-            totalPages = Math.ceil(galleryItems.length / itemsPerPage);
-            showPage(currentPage);
-
-            // Render pagination buttons
-            renderPaginationButtons();
-        }
-    };
-
-    // Fetch JSON data instead of HTML
-    xhttp.open('GET', 'assets/json/gallery.json', true);
-    xhttp.send();
-};
-
-function showPage(page) {
-    // Menampilkan elemen galeri untuk halaman tertentu
-    var startIndex = (page - 1) * itemsPerPage;
-    var endIndex = Math.min(startIndex + itemsPerPage, galleryItems.length);
-
-    for (var i = 0; i < galleryItems.length; i++) {
-        if (i >= startIndex && i < endIndex) {
-            galleryItems[i].style.display = 'block';
-        } else {
-            galleryItems[i].style.display = 'none';
-        }
-    }
-
-    // Memastikan tinggi halaman tetap konstan
-    updatePageHeight();
+  const statsSection = document.querySelector(".stats-container");
+  if (statsSection) observer.observe(statsSection);
 }
 
-function renderPaginationButtons() {
-    // Menampilkan tombol "Previous"
-    document.getElementById('pagination-gallery').innerHTML = `
-        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-            <a class="page-link" href="#" onclick="changePage(event, ${currentPage - 1})">Previous</a>
-        </li>
-    `;
+/* -------------------------------------------------------------
+ * 3. ANGGOTA KELAS (MEMBERS, SEARCH, FILTER, PAGINATION)
+ * ------------------------------------------------------------- */
+function initClassMembers() {
+  const membersContainer = document.getElementById("class-members-container");
+  const searchInput = document.getElementById("member-search-input");
+  const filterPillsContainer = document.getElementById("filter-pills-container");
+  const paginationContainer = document.getElementById("members-pagination");
 
-    // Menampilkan tombol untuk setiap halaman
-    for (var i = 1; i <= totalPages; i++) {
-        document.getElementById('pagination-gallery').innerHTML += `
-            <li class="page-item ${currentPage === i ? 'active' : ''}">
-                <a class="page-link" href="#" onclick="changePage(event, ${i})">${i}</a>
-            </li>
-        `;
-    }
+  if (!membersContainer) return;
 
-    // Menampilkan tombol "Next"
-    document.getElementById('pagination-gallery').innerHTML += `
-        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-            <a class="page-link" href="#" onclick="changePage(event, ${currentPage + 1})">Next</a>
-        </li>
-    `;
-}
+  let allMembers = [];
+  let filteredMembers = [];
+  let currentPage = 1;
+  const pageSize = 6;
+  let activeFilter = "all";
+  let searchQuery = "";
 
-function changePage(event, page) {
-    event.preventDefault(); // Mencegah perilaku default tag anchor
-    currentPage = page;
-    showPage(currentPage);
-    renderPaginationButtons();
-}
-
-function updatePageHeight() {
-    // Memastikan tinggi halaman tetap konstan
-    var body = document.body;
-    var html = document.documentElement;
-    body.style.height = 'auto';
-    html.style.height = 'auto';
-
-    var maxHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    body.style.height = maxHeight + 'px';
-    html.style.height = maxHeight + 'px';
-}
-
-// Panggil fungsi untuk memuat galeri items saat halaman dimuat
-window.onload = function () {
-    loadGalleryItems();
-    window.addEventListener('resize', updatePageHeight);
-};
-
-
-// PRESTASI
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Ganti path/to/achievements.json dengan jalur yang benar ke file JSON prestasi
-  fetch("./assets/json/achievements.json")
-    .then((response) => response.json())
+  fetch("./assets/json/members.json")
+    .then((res) => res.json())
     .then((data) => {
-      // Ambil elemen container prestasi
-      const achievementContainer = document.getElementById(
-        "achievement-container"
-      );
-
-      // Loop melalui data prestasi dan buat elemen HTML sesuai
-      data.forEach((achievement) => {
-
-        const achievementElement = document.createElement("div");
-        achievementElement.className = "col-md-4";
-        achievementElement.innerHTML = `
-                  <div class="achievement image-zoom">
-                      <div class="image-zoom-wrapper prestasi-container">
-                          <img class="img-prestasi" src="${achievement.image}" alt="${achievement.title}">
-                      </div>
-                      <h5 class="mt-4">${achievement.title}</h5>
-                      <p>${achievement.description}</p>
-                      <a class="read-more" href="./maintenance.html">Read More</a>
-                  </div>
-              `;
-        achievementContainer.appendChild(achievementElement);
-      });
+      allMembers = data;
+      applyFilters();
     })
-    .catch((error) => console.error("Error fetching achievements:", error));
-});
+    .catch((err) => console.error("Gagal memuat data anggota:", err));
 
-// PRESTASI SISWA
+  // Event Listeners for Search & Filter
+  if (searchInput) {
+    searchInput.addEventListener("input", function (e) {
+      searchQuery = e.target.value.toLowerCase().trim();
+      currentPage = 1;
+      applyFilters();
+    });
+  }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Mendapatkan container untuk card-prestasi
-    const prestasiContainer = document.getElementById("prestasiContainer");
+  if (filterPillsContainer) {
+    filterPillsContainer.addEventListener("click", function (e) {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
 
-    // Memuat data JSON
-    fetch("./assets/json/achievements-member.json")
-      .then(response => response.json())
-      .then(data => {
-        // Iterasi data dan buat card-prestasi
-        data.forEach(prestasi => {
-          // Membuat elemen card-prestasi
-          const card = document.createElement("div");
-          card.className = "col-lg-4 col-md-6 mb-4";
-          card.innerHTML = `
-            <div class="card-prestasi" data-aos="fade-down" data-aos-delay="150">
-              <img decoding="async" src="${prestasi.image}" class="card__image" alt="">
-              <div class="card__overlay">
-                <div class="card__header">
-                  <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                    <path />
-                  </svg>
-                  <img decoding="async" src="${prestasi.thumb}" alt="" class="card__thumb">
-                  <div class="card__header-text">
-                    <h3 class="card__title">${prestasi.title}</h3>
-                    <span class="card__status">${prestasi.status}</span>
-                  </div>
+      document
+        .querySelectorAll(".filter-btn")
+        .forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      activeFilter = btn.getAttribute("data-filter") || "all";
+      currentPage = 1;
+      applyFilters();
+    });
+  }
+
+  function applyFilters() {
+    filteredMembers = allMembers.filter((m) => {
+      const matchSearch =
+        m.name.toLowerCase().includes(searchQuery) ||
+        m.role.toLowerCase().includes(searchQuery) ||
+        (m.description && m.description.toLowerCase().includes(searchQuery));
+
+      if (!matchSearch) return false;
+
+      if (activeFilter === "all") return true;
+
+      const roleLower = m.role.toLowerCase();
+      if (activeFilter === "gamer") return roleLower.includes("gamer");
+      if (activeFilter === "illustrator")
+        return roleLower.includes("illustrator") || roleLower.includes("gambar");
+      if (activeFilter === "athlete")
+        return (
+          roleLower.includes("athlete") ||
+          roleLower.includes("taekwondo") ||
+          roleLower.includes("player")
+        );
+      if (activeFilter === "singer")
+        return roleLower.includes("singer") || roleLower.includes("music");
+      if (activeFilter === "leader")
+        return roleLower.includes("leader") || roleLower.includes("ketua");
+
+      return true;
+    });
+
+    renderMembersPage(currentPage);
+    renderMembersPagination();
+  }
+
+  function renderMembersPage(page) {
+    membersContainer.innerHTML = "";
+
+    if (filteredMembers.length === 0) {
+      membersContainer.innerHTML = `
+        <div class="col-12 text-center py-5">
+            <i class="ri-user-search-line fs-1 text-muted"></i>
+            <h5 class="mt-3 text-muted">Tidak ada anggota yang cocok dengan pencarian.</h5>
+        </div>`;
+      return;
+    }
+
+    const start = (page - 1) * pageSize;
+    const end = Math.min(start + pageSize, filteredMembers.length);
+    const pageItems = filteredMembers.slice(start, end);
+
+    pageItems.forEach((member, idx) => {
+      const cardHTML = `
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 50}">
+          <div class="member-card-modern">
+            <div>
+              <div class="member-card-top">
+                <img src="${member.image}" alt="${member.name}" class="member-card-avatar" onerror="this.src='./assets/images/icon1.png';">
+                <div class="member-card-info">
+                  <h5>${member.name}</h5>
+                  <span class="role-tag">${member.role}</span>
                 </div>
-                <p class="card__description">${prestasi.description}</p>
+              </div>
+              <p class="member-card-bio">${member.description || "Anggota kelas XII-3."}</p>
+            </div>
+          </div>
+        </div>`;
+      membersContainer.insertAdjacentHTML("beforeend", cardHTML);
+    });
+
+    if (typeof AOS !== "undefined") {
+      AOS.refresh();
+    }
+  }
+
+  function renderMembersPagination() {
+    if (!paginationContainer) return;
+    paginationContainer.innerHTML = "";
+
+    const totalPages = Math.ceil(filteredMembers.length / pageSize);
+    if (totalPages <= 1) return;
+
+    // Previous button
+    const prevLi = document.createElement("li");
+    prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+    prevLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-left-s-line"></i></a>`;
+    prevLi.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage > 1) {
+        currentPage--;
+        renderMembersPage(currentPage);
+        renderMembersPagination();
+        scrollToSection("#class-members");
+      }
+    });
+    paginationContainer.appendChild(prevLi);
+
+    // Page Numbers
+    for (let i = 1; i <= totalPages; i++) {
+      const pageLi = document.createElement("li");
+      pageLi.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      pageLi.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentPage = i;
+        renderMembersPage(currentPage);
+        renderMembersPagination();
+        scrollToSection("#class-members");
+      });
+      paginationContainer.appendChild(pageLi);
+    }
+
+    // Next button
+    const nextLi = document.createElement("li");
+    nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+    nextLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-right-s-line"></i></a>`;
+    nextLi.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderMembersPage(currentPage);
+        renderMembersPagination();
+        scrollToSection("#class-members");
+      }
+    });
+    paginationContainer.appendChild(nextLi);
+  }
+}
+
+/* -------------------------------------------------------------
+ * 4. GALERI (WITH FANCYBOX LIGHTBOX & PAGINATION)
+ * ------------------------------------------------------------- */
+function initGallery() {
+  const galleryRow = document.getElementById("dynamic-gallery-row");
+  const galleryPagination = document.getElementById("pagination-gallery");
+  if (!galleryRow) return;
+
+  let galleryItems = [];
+  let currentPage = 1;
+  const itemsPerPage = 6;
+
+  fetch("./assets/json/gallery.json")
+    .then((res) => res.json())
+    .then((data) => {
+      galleryItems = data;
+      renderGalleryPage(currentPage);
+      renderGalleryPagination();
+    })
+    .catch((err) => console.error("Gagal memuat galeri:", err));
+
+  function renderGalleryPage(page) {
+    galleryRow.innerHTML = "";
+    const start = (page - 1) * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, galleryItems.length);
+    const pageItems = galleryItems.slice(start, end);
+
+    pageItems.forEach((item, index) => {
+      const html = `
+        <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="${index * 50}">
+          <div class="gallery-card-modern">
+            <div class="gallery-img-wrapper">
+              <img src="${item.src}" alt="${item.alt || 'Galeri Infinithree'}" loading="lazy">
+              <div class="gallery-overlay">
+                <span class="text-white fw-bold fs-6">${item.alt || 'Dokumentasi Momen'}</span>
+                <a href="${item.src}" data-fancybox="gallery" data-caption="${item.alt || 'Galeri Infinithree'}" class="gallery-btn-zoom" aria-label="Zoom Photo">
+                  <i class="ri-zoom-in-line"></i>
+                </a>
               </div>
             </div>
-          `;
+          </div>
+        </div>`;
+      galleryRow.insertAdjacentHTML("beforeend", html);
+    });
 
-          // Menambahkan card-prestasi ke container
-          prestasiContainer.appendChild(card);
+    if (typeof Fancybox !== "undefined") {
+      Fancybox.bind('[data-fancybox="gallery"]', {});
+    }
+
+    if (typeof AOS !== "undefined") {
+      AOS.refresh();
+    }
+  }
+
+  function renderGalleryPagination() {
+    if (!galleryPagination) return;
+    galleryPagination.innerHTML = "";
+
+    const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+    if (totalPages <= 1) return;
+
+    // Previous
+    const prevLi = document.createElement("li");
+    prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
+    prevLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-left-s-line"></i></a>`;
+    prevLi.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage > 1) {
+        currentPage--;
+        renderGalleryPage(currentPage);
+        renderGalleryPagination();
+        scrollToSection("#gallery");
+      }
+    });
+    galleryPagination.appendChild(prevLi);
+
+    // Page Numbers
+    for (let i = 1; i <= totalPages; i++) {
+      const pageLi = document.createElement("li");
+      pageLi.className = `page-item ${i === currentPage ? "active" : ""}`;
+      pageLi.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+      pageLi.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentPage = i;
+        renderGalleryPage(currentPage);
+        renderGalleryPagination();
+        scrollToSection("#gallery");
+      });
+      galleryPagination.appendChild(pageLi);
+    }
+
+    // Next
+    const nextLi = document.createElement("li");
+    nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
+    nextLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-right-s-line"></i></a>`;
+    nextLi.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderGalleryPage(currentPage);
+        renderGalleryPagination();
+        scrollToSection("#gallery");
+      }
+    });
+    galleryPagination.appendChild(nextLi);
+  }
+}
+
+/* -------------------------------------------------------------
+ * 5. PRESTASI (ACHIEVEMENTS)
+ * ------------------------------------------------------------- */
+function initAchievements() {
+  const classAchieveContainer = document.getElementById("achievement-container");
+  const memberAchieveContainer = document.getElementById("prestasiContainer");
+
+  // Fetch Class Achievements
+  if (classAchieveContainer) {
+    fetch("./assets/json/achievements.json")
+      .then((res) => res.json())
+      .then((data) => {
+        classAchieveContainer.innerHTML = "";
+        data.forEach((item, idx) => {
+          const html = `
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 100}">
+              <div class="achievement-card">
+                <div class="achievement-img-wrapper">
+                  <img src="${item.image}" alt="${item.title}" loading="lazy">
+                </div>
+                <div class="achievement-body">
+                  <h5 class="achievement-title">${item.title}</h5>
+                  <p class="achievement-desc">${item.description}</p>
+                </div>
+              </div>
+            </div>`;
+          classAchieveContainer.insertAdjacentHTML("beforeend", html);
         });
       })
-      .catch(error => console.error("Error loading data:", error));
+      .catch((err) => console.error("Gagal memuat prestasi kelas:", err));
+  }
+
+  // Fetch Member Achievements
+  if (memberAchieveContainer) {
+    fetch("./assets/json/achievements-member.json")
+      .then((res) => res.json())
+      .then((data) => {
+        memberAchieveContainer.innerHTML = "";
+        data.forEach((item, idx) => {
+          const html = `
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 100}">
+              <div class="achievement-card">
+                <div class="achievement-img-wrapper">
+                  <img src="${item.image}" alt="${item.title}" loading="lazy">
+                </div>
+                <div class="achievement-body">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="${item.thumb}" alt="${item.title}" class="rounded-circle" style="width: 44px; height: 44px; object-fit: cover; border: 2px solid var(--brand-primary);">
+                    <div>
+                      <h6 class="mb-0 fw-bold text-primary">${item.title}</h6>
+                      <small class="badge bg-warning text-dark">${item.status}</small>
+                    </div>
+                  </div>
+                  <p class="achievement-desc mb-0">${item.description}</p>
+                </div>
+              </div>
+            </div>`;
+          memberAchieveContainer.insertAdjacentHTML("beforeend", html);
+        });
+      })
+      .catch((err) => console.error("Gagal memuat prestasi individu:", err));
+  }
+}
+
+/* -------------------------------------------------------------
+ * 6. SCROLL EFFECTS & BACK TO TOP
+ * ------------------------------------------------------------- */
+function initScrollEffects() {
+  const backToTopBtn = document.getElementById("backToTop");
+  const navbar = document.getElementById("mainNavbar");
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      if (backToTopBtn) backToTopBtn.classList.add("show");
+    } else {
+      if (backToTopBtn) backToTopBtn.classList.remove("show");
+    }
   });
+
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+}
+
+function scrollToSection(selector) {
+  const elem = document.querySelector(selector);
+  if (elem) {
+    const offset = 80;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = elem.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+}

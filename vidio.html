@@ -1,32 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Video Infinithree</title>
+    <title>Video Gallery — Infinithree XII-3</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/vidio/vidio.css">
-    <link id="favicon" rel="shortcut icon" href="./assets/images/icon.png" />
+    <link id="favicon" rel="shortcut icon" href="./assets/images/icon1.png" />
 </head>
 
 <body>
+    <header class="video-header">
+        <a href="./index.html" class="back-btn">
+            <i class="ri-arrow-left-line"></i> Kembali ke Beranda
+        </a>
+        <div class="header-title">
+            <img src="./assets/images/icon1.png" alt="Infinithree Logo" height="36">
+            <span>Infinithree Video Collection</span>
+        </div>
+    </header>
+
     <main class="container">
         <section class="main-video">
-            <video src="videos/manipulate text background.mp4" controls autoplay muted></video>
-            <h3 class="title">Click the playlist video to play</h3>
+            <video src="./assets/vidio/vidios/sidikJari.mp4" controls autoplay muted></video>
+            <h3 class="title">Membuat sidik jari</h3>
         </section>
 
         <section class="video-playlist">
-            <h3 class="title">Vidio Infinithree</h3>
-            <p>1 Vidio &nbsp; . &nbsp; 30s</p>
+            <div class="playlist-header">
+                <h3 class="title"><i class="ri-play-list-2-line me-2"></i> Playlist Video</h3>
+                <p class="playlist-meta">1 Video • 30s</p>
+            </div>
             <div class="videos">
-
+                <!-- Loaded dynamically by vidio.js -->
             </div>
         </section>
-
-        
     </main>
+
     <script src="./assets/vidio/vidio.js"></script>
 </body>
 
