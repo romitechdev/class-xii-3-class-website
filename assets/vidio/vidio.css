@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
 
 :root {
-    --bg-main: #090d16;
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --brand-primary: #6366f1;
-    --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.1);
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --brand-primary: #2563eb;
+    --brand-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
     --radius-md: 16px;
     --radius-lg: 24px;
 }
@@ -21,7 +21,7 @@
 body {
     min-height: 100vh;
     background-color: var(--bg-main);
-    background-image: radial-gradient(circle at 50% 10%, rgba(99, 102, 241, 0.15), transparent 60%);
+    background-image: radial-gradient(circle at 50% 10%, rgba(37, 99, 235, 0.05), transparent 60%);
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: var(--text-primary);
     display: flex;
@@ -31,7 +31,7 @@ body {
 .video-header {
     width: 100%;
     padding: 16px 30px;
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -51,15 +51,17 @@ body {
     align-items: center;
     gap: 8px;
     padding: 8px 18px;
-    background: var(--bg-card);
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
 }
 
 .back-btn:hover {
     background: var(--brand-primary);
     border-color: var(--brand-primary);
+    color: #ffffff;
     transform: translateX(-4px);
 }
 
@@ -92,8 +94,8 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 20px;
-    backdrop-filter: blur(16px);
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .main-video video {
@@ -117,7 +119,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 24px;
-    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
 }
@@ -164,7 +166,7 @@ body {
     align-items: center;
     gap: 14px;
     padding: 14px 18px;
-    background: rgba(15, 23, 42, 0.5);
+    background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     cursor: pointer;
@@ -173,14 +175,13 @@ body {
 
 .video-playlist .videos .video:hover,
 .video-playlist .videos .video.active {
-    background: rgba(99, 102, 241, 0.2);
+    background: #eff6ff;
     border-color: var(--brand-primary);
 }
 
 .video-playlist .videos .video img {
     width: 24px;
     height: 24px;
-    filter: invert(1);
 }
 
 .video-playlist .videos .video .title {

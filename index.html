@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Website Resmi Kelas XII-3 (Infinithree) SMAN 3 Bojonegoro. Informasi struktur kelas, daftar siswa, galeri kegiatan, dan prestasi kelas.">
+        content="Website Resmi Kelas XII-3 (Infinithree) SMAN 3 Bojonegoro. Tampilan clean, modern dengan animasi interaktif.">
     <meta name="keywords"
         content="Infinithree, XII-3, SMAN 3 Bojonegoro, SMA Bojonegoro, Kelas XII-3, website kelas">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Infinithree - Class Website XII-3 SMAN 3 Bojonegoro">
+    <meta property="og:title" content="Infinithree — Website Resmi XII-3 SMAN 3 Bojonegoro">
     <meta property="og:description"
         content="Website Resmi Kelas XII-3 SMAN 3 Bojonegoro. Temukan keseruan, struktur kelas, profil siswa, dan kenangan indah bersama kami.">
     <meta property="og:image" content="./assets/images/icon1.png">
@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <!-- Custom Style -->
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -32,20 +31,15 @@
     <!-- NAVBAR -->
     <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#hero">
+            <a class="navbar-brand gsap-reveal" href="#hero">
                 <img src="./assets/images/icon1.png" alt="Infinithree Logo">
                 <span>INFINITHREE</span>
             </a>
 
-            <div class="d-flex align-items-center gap-2 order-lg-3">
-                <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
-                    <i class="ri-moon-line" id="themeIcon"></i>
-                </button>
-                <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="ri-menu-3-line fs-2 text-primary"></i>
-                </button>
-            </div>
+            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="ri-menu-3-line fs-2 text-primary"></i>
+            </button>
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
@@ -78,24 +72,24 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <div class="hero-pill" data-aos="fade-down" data-aos-duration="800">
+                    <div class="hero-pill gsap-hero-element">
                         <i class="ri-sparkles-fill"></i>
                         <span>SMAN 3 BOJONEGORO • KELAS XII-3</span>
                     </div>
 
-                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                    <h1 class="hero-title gsap-hero-title">
                         Selamat Datang di <span class="gradient-text">Infinithree</span>
                     </h1>
 
-                    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    <p class="hero-subtitle gsap-hero-element">
                         Penuh petualangan, kebersamaan, dan prestasi tiada henti. Saksikan setiap impian dan kenangan berharga menjadi kenyataan di sini. 🚀✨
                     </p>
 
-                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
-                        <a href="#class-members" class="btn-modern btn-modern-primary">
+                    <div class="hero-buttons gsap-hero-element">
+                        <a href="#class-members" class="btn-modern btn-modern-primary gsap-btn">
                             <i class="ri-group-line"></i> Lihat Anggota Kelas
                         </a>
-                        <a href="./confess.html" class="btn-modern btn-modern-outline">
+                        <a href="./confess.html" class="btn-modern btn-modern-outline gsap-btn">
                             <i class="ri-chat-heart-line"></i> Kirim Confess
                         </a>
                     </div>
@@ -103,7 +97,7 @@
             </div>
 
             <!-- STATS COUNTER -->
-            <div class="stats-container" data-aos="fade-up" data-aos-delay="400">
+            <div class="stats-container gsap-scroll-trigger">
                 <div class="row g-4 justify-content-center">
                     <div class="col-6 col-md-4">
                         <div class="stat-card">
@@ -132,7 +126,7 @@
     <!-- ABOUT SECTION -->
     <section id="about" class="section-padding">
         <div class="container">
-            <div class="section-title text-center" data-aos="fade-up">
+            <div class="section-title text-center gsap-scroll-trigger">
                 <span class="badge-pill"><i class="ri-information-line"></i> Tentang Kami</span>
                 <h2>Keluarga Besar <span class="gradient-text">XII-3</span></h2>
                 <div class="line"></div>
@@ -140,7 +134,7 @@
             </div>
 
             <!-- MEDIA SOSIAL CARDS -->
-            <div class="social-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="social-grid gsap-scroll-trigger">
                 <a href="https://www.instagram.com/infinithree_ofc?igsh=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener" class="social-card">
                     <div class="social-card-head">
                         <div class="social-icon-wrapper instagram">
@@ -193,16 +187,16 @@
     <!-- STRUKTUR KELAS -->
     <section id="class-structure" class="section-padding">
         <div class="container">
-            <div class="section-title text-center" data-aos="fade-up">
+            <div class="section-title text-center gsap-scroll-trigger">
                 <span class="badge-pill"><i class="ri-organization-chart"></i> Organisasi</span>
                 <h2>Struktur <span class="gradient-text">Pengurus Kelas</span></h2>
                 <div class="line"></div>
                 <p>Jajaran pengurus yang solid dan bertanggung jawab dalam membangun sinergi kelas XII-3.</p>
             </div>
 
-            <div class="structure-grid">
+            <div class="structure-grid gsap-scroll-trigger">
                 <!-- Wali Kelas -->
-                <div class="structure-card featured" data-aos="fade-up">
+                <div class="structure-card featured">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/wali-kelas-12.jpg" alt="Wali Kelas" class="avatar-img">
                     </div>
@@ -211,7 +205,7 @@
                 </div>
 
                 <!-- Ketua -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/ketua-12.jpg" alt="Ketua Kelas" class="avatar-img">
                     </div>
@@ -220,7 +214,7 @@
                 </div>
 
                 <!-- Wakil -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/wakil-12.jpg" alt="Wakil Ketua Kelas" class="avatar-img">
                     </div>
@@ -229,7 +223,7 @@
                 </div>
 
                 <!-- Sekretaris 1 -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/sekretaris-1-12.jpg" alt="Sekretaris 1" class="avatar-img">
                     </div>
@@ -238,7 +232,7 @@
                 </div>
 
                 <!-- Sekretaris 2 -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/members/arum.jpg" alt="Sekretaris 2" class="avatar-img">
                     </div>
@@ -247,7 +241,7 @@
                 </div>
 
                 <!-- Bendahara 1 -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/bendhahara-1-12.jpg" alt="Bendahara 1" class="avatar-img">
                     </div>
@@ -256,7 +250,7 @@
                 </div>
 
                 <!-- Bendahara 2 -->
-                <div class="structure-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="structure-card">
                     <div class="avatar-wrapper">
                         <img src="./assets/images/structur-class/bendhahara-2-12.jpg" alt="Bendahara 2" class="avatar-img">
                     </div>
@@ -271,7 +265,7 @@
     <!-- ANGGOTA KELAS -->
     <section id="class-members" class="section-padding">
         <div class="container">
-            <div class="section-title text-center" data-aos="fade-up">
+            <div class="section-title text-center gsap-scroll-trigger">
                 <span class="badge-pill"><i class="ri-user-star-line"></i> Profil</span>
                 <h2>Anggota <span class="gradient-text">Kelas XII-3</span></h2>
                 <div class="line"></div>
@@ -279,7 +273,7 @@
             </div>
 
             <!-- SEARCH & FILTER BAR -->
-            <div class="search-filter-box" data-aos="fade-up" data-aos-delay="100">
+            <div class="search-filter-box gsap-scroll-trigger">
                 <div class="search-input-wrapper">
                     <i class="ri-search-line"></i>
                     <input type="text" id="member-search-input" class="search-input" placeholder="Cari nama siswa atau role...">
@@ -311,7 +305,7 @@
     <!-- GALERI SECTION -->
     <section id="gallery" class="section-padding">
         <div class="container">
-            <div class="section-title text-center" data-aos="fade-up">
+            <div class="section-title text-center gsap-scroll-trigger">
                 <span class="badge-pill"><i class="ri-gallery-line"></i> Kenangan</span>
                 <h2>Galeri <span class="gradient-text">Foto & Momen</span></h2>
                 <div class="line"></div>
@@ -328,8 +322,8 @@
                 </ul>
             </div>
 
-            <div class="text-center mt-4" data-aos="fade-up">
-                <a href="./vidio.html" class="btn-modern btn-modern-primary">
+            <div class="text-center mt-4 gsap-scroll-trigger">
+                <a href="./vidio.html" class="btn-modern btn-modern-primary gsap-btn">
                     <i class="ri-video-line"></i> Tonton Video Infinithree
                 </a>
             </div>
@@ -340,7 +334,7 @@
     <!-- PRESTASI SECTION -->
     <section id="achievement" class="section-padding">
         <div class="container">
-            <div class="section-title text-center" data-aos="fade-up">
+            <div class="section-title text-center gsap-scroll-trigger">
                 <span class="badge-pill"><i class="ri-trophy-line"></i> Kebanggaan</span>
                 <h2>Prestasi <span class="gradient-text">Kelas & Anggota</span></h2>
                 <div class="line"></div>
@@ -348,13 +342,13 @@
             </div>
 
             <!-- CLASS ACHIEVEMENTS -->
-            <h4 class="fw-bold mb-4" data-aos="fade-up"><i class="ri-award-line text-warning me-2"></i> Prestasi Kelas</h4>
+            <h4 class="fw-bold mb-4 gsap-scroll-trigger"><i class="ri-award-line text-warning me-2"></i> Prestasi Kelas</h4>
             <div class="row g-4 mb-5" id="achievement-container">
                 <!-- Dynamically loaded via JavaScript -->
             </div>
 
             <!-- MEMBER ACHIEVEMENTS -->
-            <h4 class="fw-bold mb-4" data-aos="fade-up"><i class="ri-medal-line text-warning me-2"></i> Prestasi Individu Siswa</h4>
+            <h4 class="fw-bold mb-4 gsap-scroll-trigger"><i class="ri-medal-line text-warning me-2"></i> Prestasi Individu Siswa</h4>
             <div class="row g-4" id="prestasiContainer">
                 <!-- Dynamically loaded via JavaScript -->
             </div>
@@ -428,7 +422,10 @@
     <!-- JS EXTERNAL LIBRARIES -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <!-- CUSTOM JS -->
     <script src="./assets/js/main.js"></script>

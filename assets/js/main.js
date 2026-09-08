@@ -1,12 +1,7 @@
-// Initialize AOS (Animate On Scroll)
 document.addEventListener("DOMContentLoaded", function () {
-  if (typeof AOS !== "undefined") {
-    AOS.init({
-      duration: 800,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 50,
-    });
+  // Register GSAP Plugins
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
   }
 
   // Set Current Year in Footer
@@ -15,19 +10,22 @@ document.addEventListener("DOMContentLoaded", function () {
     yearElem.textContent = new Date().getFullYear();
   }
 
-  // DARK / LIGHT THEME TOGGLE
-  initThemeToggle();
+  // GSAP HERO ANIMATIONS
+  initGSAPHero();
 
-  // HERO STATS COUNTER ANIMATION
-  initStatsCounter();
+  // GSAP SCROLLTRIGGER ANIMATIONS FOR SECTIONS
+  initGSAPScrollTriggers();
 
-  // ANGGOTA KELAS (MEMBERS) SEARCH & FILTER & PAGINATION
+  // HERO STATS COUNTER WITH GSAP
+  initGSAPStatsCounter();
+
+  // ANGGOTA KELAS (MEMBERS) SEARCH, FILTER & PAGINATION WITH GSAP
   initClassMembers();
 
-  // GALERI
+  // GALERI WITH GSAP & FANCYBOX
   initGallery();
 
-  // PRESTASI (ACHIEVEMENTS)
+  // PRESTASI (ACHIEVEMENTS) WITH GSAP
   initAchievements();
 
   // BACK TO TOP BUTTON & NAVBAR SCROLL STATE
@@ -35,74 +33,119 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* -------------------------------------------------------------
- * 1. THEME TOGGLE (DARK / LIGHT MODE)
+ * 1. GSAP HERO ENTRANCE ANIMATION
  * ------------------------------------------------------------- */
-function initThemeToggle() {
-  const themeBtn = document.getElementById("themeToggleBtn");
-  const themeIcon = document.getElementById("themeIcon");
-  const htmlElem = document.documentElement;
+function initGSAPHero() {
+  if (typeof gsap === "undefined") return;
 
-  const savedTheme = localStorage.getItem("infinithree_theme") || "dark";
-  setTheme(savedTheme);
+  const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      const currentTheme = htmlElem.getAttribute("data-theme");
-      const nextTheme = currentTheme === "dark" ? "light" : "dark";
-      setTheme(nextTheme);
-    });
-  }
-
-  function setTheme(theme) {
-    htmlElem.setAttribute("data-theme", theme);
-    localStorage.setItem("infinithree_theme", theme);
-    if (themeIcon) {
-      themeIcon.className = theme === "dark" ? "ri-sun-line" : "ri-moon-line";
-    }
-  }
+  tl.from(".navbar", {
+    y: -80,
+    opacity: 0,
+    duration: 1,
+  })
+    .from(
+      ".gsap-hero-element",
+      {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+      },
+      "-=0.5"
+    )
+    .from(
+      ".gsap-hero-title",
+      {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 1.2,
+      },
+      "-=0.8"
+    );
 }
 
 /* -------------------------------------------------------------
- * 2. HERO STATS ANIMATED COUNTER
+ * 2. GSAP SCROLLTRIGGER SECTION ANIMATIONS
  * ------------------------------------------------------------- */
-function initStatsCounter() {
+function initGSAPScrollTriggers() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+
+  // Animate Section Titles
+  gsap.utils.toArray(".section-title").forEach((title) => {
+    gsap.from(title, {
+      scrollTrigger: {
+        trigger: title,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+  });
+
+  // Animate Social Grid Cards
+  gsap.from(".social-card", {
+    scrollTrigger: {
+      trigger: ".social-grid",
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.15,
+    ease: "power3.out",
+  });
+
+  // Animate Class Structure Grid
+  gsap.from(".structure-card", {
+    scrollTrigger: {
+      trigger: ".structure-grid",
+      start: "top 80%",
+    },
+    y: 50,
+    opacity: 0,
+    scale: 0.95,
+    duration: 0.9,
+    stagger: 0.12,
+    ease: "back.out(1.4)",
+  });
+}
+
+/* -------------------------------------------------------------
+ * 3. GSAP STATS COUNTER
+ * ------------------------------------------------------------- */
+function initGSAPStatsCounter() {
   const statNumbers = document.querySelectorAll(".stat-number");
-  if (!statNumbers.length) return;
+  if (!statNumbers.length || typeof gsap === "undefined") return;
 
-  let animated = false;
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          statNumbers.forEach((counter) => {
-            const target = parseInt(counter.getAttribute("data-target"), 10);
-            let count = 0;
-            const speed = Math.ceil(target / 40);
+  ScrollTrigger.create({
+    trigger: ".stats-container",
+    start: "top 80%",
+    onEnter: () => {
+      statNumbers.forEach((counter) => {
+        const target = parseInt(counter.getAttribute("data-target"), 10);
+        const obj = { val: 0 };
 
-            const updateCount = () => {
-              count += speed;
-              if (count >= target) {
-                counter.innerText = target;
-              } else {
-                counter.innerText = count;
-                setTimeout(updateCount, 30);
-              }
-            };
-            updateCount();
-          });
-        }
+        gsap.to(obj, {
+          val: target,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: function () {
+            counter.innerText = Math.floor(obj.val);
+          },
+        });
       });
     },
-    { threshold: 0.5 }
-  );
-
-  const statsSection = document.querySelector(".stats-container");
-  if (statsSection) observer.observe(statsSection);
+  });
 }
 
 /* -------------------------------------------------------------
- * 3. ANGGOTA KELAS (MEMBERS, SEARCH, FILTER, PAGINATION)
+ * 4. ANGGOTA KELAS (MEMBERS, SEARCH, FILTER, PAGINATION)
  * ------------------------------------------------------------- */
 function initClassMembers() {
   const membersContainer = document.getElementById("class-members-container");
@@ -127,7 +170,7 @@ function initClassMembers() {
     })
     .catch((err) => console.error("Gagal memuat data anggota:", err));
 
-  // Event Listeners for Search & Filter
+  // Search Input Listener
   if (searchInput) {
     searchInput.addEventListener("input", function (e) {
       searchQuery = e.target.value.toLowerCase().trim();
@@ -136,6 +179,7 @@ function initClassMembers() {
     });
   }
 
+  // Filter Pills Listener
   if (filterPillsContainer) {
     filterPillsContainer.addEventListener("click", function (e) {
       const btn = e.target.closest(".filter-btn");
@@ -160,7 +204,6 @@ function initClassMembers() {
         (m.description && m.description.toLowerCase().includes(searchQuery));
 
       if (!matchSearch) return false;
-
       if (activeFilter === "all") return true;
 
       const roleLower = m.role.toLowerCase();
@@ -201,9 +244,9 @@ function initClassMembers() {
     const end = Math.min(start + pageSize, filteredMembers.length);
     const pageItems = filteredMembers.slice(start, end);
 
-    pageItems.forEach((member, idx) => {
+    pageItems.forEach((member) => {
       const cardHTML = `
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 50}">
+        <div class="col-md-6 col-lg-4 member-item-col">
           <div class="member-card-modern">
             <div>
               <div class="member-card-top">
@@ -220,8 +263,15 @@ function initClassMembers() {
       membersContainer.insertAdjacentHTML("beforeend", cardHTML);
     });
 
-    if (typeof AOS !== "undefined") {
-      AOS.refresh();
+    // GSAP Stagger Entrance for Members
+    if (typeof gsap !== "undefined") {
+      gsap.from(".member-item-col", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+      });
     }
   }
 
@@ -232,7 +282,7 @@ function initClassMembers() {
     const totalPages = Math.ceil(filteredMembers.length / pageSize);
     if (totalPages <= 1) return;
 
-    // Previous button
+    // Previous
     const prevLi = document.createElement("li");
     prevLi.className = `page-item ${currentPage === 1 ? "disabled" : ""}`;
     prevLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-left-s-line"></i></a>`;
@@ -262,7 +312,7 @@ function initClassMembers() {
       paginationContainer.appendChild(pageLi);
     }
 
-    // Next button
+    // Next
     const nextLi = document.createElement("li");
     nextLi.className = `page-item ${currentPage === totalPages ? "disabled" : ""}`;
     nextLi.innerHTML = `<a class="page-link" href="#"><i class="ri-arrow-right-s-line"></i></a>`;
@@ -280,7 +330,7 @@ function initClassMembers() {
 }
 
 /* -------------------------------------------------------------
- * 4. GALERI (WITH FANCYBOX LIGHTBOX & PAGINATION)
+ * 5. GALERI (WITH FANCYBOX LIGHTBOX & GSAP ANIMATIONS)
  * ------------------------------------------------------------- */
 function initGallery() {
   const galleryRow = document.getElementById("dynamic-gallery-row");
@@ -306,9 +356,9 @@ function initGallery() {
     const end = Math.min(start + itemsPerPage, galleryItems.length);
     const pageItems = galleryItems.slice(start, end);
 
-    pageItems.forEach((item, index) => {
+    pageItems.forEach((item) => {
       const html = `
-        <div class="col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="${index * 50}">
+        <div class="col-sm-6 col-md-4 gallery-col-item">
           <div class="gallery-card-modern">
             <div class="gallery-img-wrapper">
               <img src="${item.src}" alt="${item.alt || 'Galeri Infinithree'}" loading="lazy">
@@ -328,8 +378,14 @@ function initGallery() {
       Fancybox.bind('[data-fancybox="gallery"]', {});
     }
 
-    if (typeof AOS !== "undefined") {
-      AOS.refresh();
+    if (typeof gsap !== "undefined") {
+      gsap.from(".gallery-col-item", {
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+      });
     }
   }
 
@@ -388,21 +444,21 @@ function initGallery() {
 }
 
 /* -------------------------------------------------------------
- * 5. PRESTASI (ACHIEVEMENTS)
+ * 6. PRESTASI (ACHIEVEMENTS)
  * ------------------------------------------------------------- */
 function initAchievements() {
   const classAchieveContainer = document.getElementById("achievement-container");
   const memberAchieveContainer = document.getElementById("prestasiContainer");
 
-  // Fetch Class Achievements
+  // Class Achievements
   if (classAchieveContainer) {
     fetch("./assets/json/achievements.json")
       .then((res) => res.json())
       .then((data) => {
         classAchieveContainer.innerHTML = "";
-        data.forEach((item, idx) => {
+        data.forEach((item) => {
           const html = `
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 100}">
+            <div class="col-md-6 col-lg-4 achievement-item-col">
               <div class="achievement-card">
                 <div class="achievement-img-wrapper">
                   <img src="${item.image}" alt="${item.title}" loading="lazy">
@@ -415,19 +471,33 @@ function initAchievements() {
             </div>`;
           classAchieveContainer.insertAdjacentHTML("beforeend", html);
         });
+
+        if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+          gsap.from(".achievement-item-col", {
+            scrollTrigger: {
+              trigger: "#achievement-container",
+              start: "top 80%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power2.out",
+          });
+        }
       })
       .catch((err) => console.error("Gagal memuat prestasi kelas:", err));
   }
 
-  // Fetch Member Achievements
+  // Member Achievements
   if (memberAchieveContainer) {
     fetch("./assets/json/achievements-member.json")
       .then((res) => res.json())
       .then((data) => {
         memberAchieveContainer.innerHTML = "";
-        data.forEach((item, idx) => {
+        data.forEach((item) => {
           const html = `
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${idx * 100}">
+            <div class="col-md-6 col-lg-4 member-achieve-col">
               <div class="achievement-card">
                 <div class="achievement-img-wrapper">
                   <img src="${item.image}" alt="${item.title}" loading="lazy">
@@ -446,17 +516,30 @@ function initAchievements() {
             </div>`;
           memberAchieveContainer.insertAdjacentHTML("beforeend", html);
         });
+
+        if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+          gsap.from(".member-achieve-col", {
+            scrollTrigger: {
+              trigger: "#prestasiContainer",
+              start: "top 80%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: "power2.out",
+          });
+        }
       })
       .catch((err) => console.error("Gagal memuat prestasi individu:", err));
   }
 }
 
 /* -------------------------------------------------------------
- * 6. SCROLL EFFECTS & BACK TO TOP
+ * 7. SCROLL EFFECTS & BACK TO TOP
  * ------------------------------------------------------------- */
 function initScrollEffects() {
   const backToTopBtn = document.getElementById("backToTop");
-  const navbar = document.getElementById("mainNavbar");
 
   window.addEventListener("scroll", function () {
     if (window.scrollY > 300) {

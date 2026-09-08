@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
 
 :root {
-    --bg-main: #090d16;
-    --bg-card: rgba(30, 41, 59, 0.75);
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
     --brand-primary: #ec4899;
     --brand-secondary: #8b5cf6;
     --brand-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.12);
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
     --radius-md: 16px;
     --radius-lg: 24px;
 }
@@ -23,7 +23,7 @@
 
 body {
     background-color: var(--bg-main);
-    background-image: radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.15), transparent 60%);
+    background-image: radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.06), transparent 60%);
     font-family: 'Plus Jakarta Sans', sans-serif;
     color: var(--text-primary);
     min-height: 100vh;
@@ -33,7 +33,7 @@ body {
 .confess-header {
     width: 100%;
     padding: 14px 24px;
-    background: rgba(15, 23, 42, 0.85);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -53,16 +53,17 @@ body {
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.08);
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
 }
 
 .back-home-btn:hover {
     background: var(--brand-primary);
     border-color: var(--brand-primary);
-    color: #fff;
+    color: #ffffff;
     transform: translateX(-4px);
 }
 
@@ -103,8 +104,7 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -122,7 +122,7 @@ body {
 #join_input {
     width: 100%;
     padding: 16px 20px;
-    background: rgba(15, 23, 42, 0.6);
+    background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-primary);
@@ -133,8 +133,9 @@ body {
 }
 
 #join_input:focus {
+    background: #ffffff;
     border-color: var(--brand-primary);
-    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
 }
 
 #join_button_container {
@@ -144,7 +145,7 @@ body {
 #join_button {
     width: 100%;
     padding: 14px 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-muted);
@@ -159,7 +160,7 @@ body {
     background: var(--brand-gradient);
     color: #ffffff;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
 }
 
 #join_button.enabled:hover {
@@ -175,8 +176,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 24px;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -219,7 +219,7 @@ body {
 #chat_input {
     flex-grow: 1;
     padding: 12px 18px;
-    background: rgba(15, 23, 42, 0.6);
+    background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: 999px;
     color: var(--text-primary);
@@ -227,6 +227,7 @@ body {
 }
 
 #chat_input:focus {
+    background: #ffffff;
     border-color: var(--brand-primary);
 }
 
@@ -262,7 +263,7 @@ body {
 }
 
 .message_container {
-    background: rgba(15, 23, 42, 0.5);
+    background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     padding: 14px 18px;
@@ -290,7 +291,7 @@ body {
 }
 
 .loader {
-    border: 4px solid rgba(255, 255, 255, 0.1);
+    border: 4px solid #f1f5f9;
     border-top: 4px solid var(--brand-primary);
     border-radius: 50%;
     width: 40px;
